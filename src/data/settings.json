@@ -1,0 +1,13 @@
+{
+    "mode" : "standard",
+    "size" : "65",
+    "layout" : "ANSI",
+    "keys" : "pineapple",
+    "case" : "pineapple", 
+    "print" : {
+        "alphanumeric" : "standard",
+        "modifiers" : "blank",
+        "os" : "blank"
+    },
+    "preset" : "pineapple"
+}

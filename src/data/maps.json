@@ -1,0 +1,11 @@
+{   
+    "76": {
+        "ctrl_l": { "name" : "ctrl" },
+        "os_l": { "name" : "os" },
+        "alt_l": { "name" : "alt" },
+        "alt_r" : { "name" : "alt" },
+        "os_r" : { "name" : "os" },
+        "ctrl_r" : { "name" : "ctrl" },
+        "x" : { "name" : "76"}
+    }
+}

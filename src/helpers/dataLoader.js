@@ -1,0 +1,79 @@
+import presets from '../data/presets.json'
+import layouts from '../data/layouts.json'
+import maps from '../data/maps.json'
+import keys from '../data/keys.json'
+import cases from '../data/cases.json'
+import materials from '../data/materials.json'
+import environment from '../data/environment.json'
+
+export const getPreset = ( preset ) => {
+    //return design props such possible layouts and sizes and case material and positioning factors
+    return presets[preset]
+}
+
+export const getEnvironmentData = () => {
+  return environment
+}
+
+export const getCaseData = ( design ) => {
+  return cases[design]
+}
+
+export const getKeyLayout = ( keyboard ) => {
+    //return key layout ( position ) for the current keyboard size and layout
+    return layouts[keyboard.size][keyboard.layout].rows 
+}
+
+export const getKeyData = ( design ) => {
+  //return keycap model info
+  return keys[design]
+}
+
+export const getTexturesByMaterial = ( material ) => {
+  //Get textures used by a material, return array of type and path to texture
+  const base_path = `/textures/materials/${material}`
+    
+  return materials[material].map( texture => { return {type:texture, path:`${base_path}/${texture}.jpg`} })
+}
+
+export const getSymbolMap = ( keyboard, key ) => {
+ return  { path: `textures/symbols/${keyboard.print}/${maps[keyboard.print][key.map].name}.png`, solid : maps[keyboard.print][key.map].solid }
+}
+
+export const getKeysSymbolTextures = ( keyboard ) => {
+    //Returns an array of used textures for symbols in a keyset / layout
+    const keySymbolTextures = []
+    // getKeyLayout(keyboard).forEach( rows => {
+    //   rows.keys.forEach(
+    //     key => { 
+    //       if (maps[keyboard.print][key.map].name !== 'not_mapped') {
+    //         const path = getSymbolMap( keyboard, key ).path
+    //         const obj = { type: 'symbol', path: path}
+    //         keySymbolTextures.indexOf( path )  === -1 ? keySymbolTextures.push(obj) : console.log('Symbol texture is already loaded')
+    //       }
+    //     }
+    //     )
+    //   }
+    // )
+    return keySymbolTextures
+}
+
+export const getKeyModelPath = ( keyboard, key ) => {
+  return `/models/keyboards/keys/${keyboard.keys}/${key.model}.glb`
+}
+  
+
+export const getComponentTextures = ( texturesToGet, resources ) => {
+
+  const textures = texturesToGet.map(textureObj => {
+      return resources.textures.find(texture => texture.path === textureObj.path)
+  })
+
+  const textureProps = {}
+
+  textures.forEach(texture => {
+      const obj = {}
+      textureProps[texture.type] = texture.texture
+  })
+  return textureProps
+}

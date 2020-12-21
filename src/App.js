@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useRef, useEffect, useReducer } from 'react'
+import initialSettings from './data/settings.json'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { getCaseData, getKeyData, getKeyLayout } from "./dataLoader"
+import { getGeometry, getKeys, getMaterialTextures } from "./resourceLoader"
+
+const resourceReducer = (state, action) => {
+    switch (action.type) {
+        case 'CASE_DATA_SET':
+            return {
+                ...state,
+                case: { ...state.case, data: action.payload }
+            }
+        case 'CASE_MODEL_LOADED':
+            return {
+                ...state,
+                case: { ...state.case, geometry: action.payload }
+            }
+        case 'CASE_TEXTURES_LOADED':
+            return {
+                ...state,
+                case: { ...state.case, textures: action.payload }
+            }
+        case 'KEY_MODELS_LOADED':
+            return {
+                ...state,
+                keys: action.payload
+            }
+
+        default:
+            throw new Error()
+    }
 }
 
-export default App;

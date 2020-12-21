@@ -1,0 +1,13 @@
+{
+    "ctrl_l" : {
+        "type":"modifier",
+        "model":"1x1r1",
+        "width":1.25
+    },
+    "os_l" : {
+        "type":"modifier",
+        "model":"1x1r1",
+        "width":1.25
+    }
+}
+
