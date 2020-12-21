@@ -1,29 +1,31 @@
 import React, { useRef, useState, useEffect } from 'react'
 
-const Key = ({ x, y, symbol, solid, geometry, textureProps, dynamicTexture }) => {
+//const Key = ({ x, y, symbol, solid, geometry, textureProps, dynamicTexture }) => {
 
-    const [position, setPosition] = useState([x, y, 0])
-    const [color, setColor] = useState(getRandomColor())
+  const Key = ({ model, position, textures }) => {
+
+    const geometry = model.scene.clone(true)
+    const [keyPosition, setKeyPosition] = useState([position.x, position.y, 0])
 
     let map
 
-    if(dynamicTexture){
-      map = dynamicTexture
-    }
+    // if(dynamicTexture){
+    //   map = dynamicTexture
+    // }
   
-    if(symbol){
-       map = symbol.texture
-    }
+    // if(symbol){
+    //    map = symbol.texture
+    // }
 
-    map.flipY = false
-    map.flipX = false
+    // map.flipY = false
+    // map.flipX = false
 
     const clickedKey = (e) => {
-      setColor(getRandomColor())
+      //setColor(getRandomColor())
     }  
  
     return (
-      <mesh castShadow receiveShadow position={position} onClick={clickedKey} >
+      <mesh castShadow receiveShadow position={keyPosition} onClick={clickedKey} >
         <bufferGeometry attach="geometry" { ...geometry.children[0].geometry }  />
         <meshPhysicalMaterial 
 
@@ -32,9 +34,9 @@ const Key = ({ x, y, symbol, solid, geometry, textureProps, dynamicTexture }) =>
         // color={
         //   !solid ? color : null  //color if texture is transparent with color
         // } 
-        map={map}
+       // map={map}
 
-        {...textureProps}
+        {...textures}
         metalness={0}
         roughness={0.8}
         reflectivity={1}
@@ -47,16 +49,3 @@ const Key = ({ x, y, symbol, solid, geometry, textureProps, dynamicTexture }) =>
 }
 
 export default Key
-
-const getRandomColor = () => {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    //console.log(color)
-    //color = "#356497"
-    return color;
-  }
-
-

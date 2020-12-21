@@ -34,8 +34,12 @@
             "rows" : 
             [
                 {
-                    "keys" : ["ctrl_l", "os_l", "alt_r"]
-                }               
+                    "keys" : [
+                        {"type":"alphanumeric","map":"spacebar","model":"6.25x1r1","width":6.25},
+                        {"type":"modifier","map" : "os_r","model":"1.25x1r1","width":1.25},
+                        {"type":"modifier","map" : "alt_r","model":"1.25x1r1","width":1.25}                        
+                    ]
+                }            
                    
             ]
         }

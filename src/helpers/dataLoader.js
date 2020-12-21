@@ -19,9 +19,9 @@ export const getCaseData = ( design ) => {
   return cases[design]
 }
 
-export const getKeyLayout = ( keyboard ) => {
+export const getKeyLayout = ( settings ) => {
     //return key layout ( position ) for the current keyboard size and layout
-    return layouts[keyboard.size][keyboard.layout].rows 
+    return layouts[settings.size][settings.layout].rows 
 }
 
 export const getKeyData = ( design ) => {
@@ -40,28 +40,7 @@ export const getSymbolMap = ( keyboard, key ) => {
  return  { path: `textures/symbols/${keyboard.print}/${maps[keyboard.print][key.map].name}.png`, solid : maps[keyboard.print][key.map].solid }
 }
 
-export const getKeysSymbolTextures = ( keyboard ) => {
-    //Returns an array of used textures for symbols in a keyset / layout
-    const keySymbolTextures = []
-    // getKeyLayout(keyboard).forEach( rows => {
-    //   rows.keys.forEach(
-    //     key => { 
-    //       if (maps[keyboard.print][key.map].name !== 'not_mapped') {
-    //         const path = getSymbolMap( keyboard, key ).path
-    //         const obj = { type: 'symbol', path: path}
-    //         keySymbolTextures.indexOf( path )  === -1 ? keySymbolTextures.push(obj) : console.log('Symbol texture is already loaded')
-    //       }
-    //     }
-    //     )
-    //   }
-    // )
-    return keySymbolTextures
-}
 
-export const getKeyModelPath = ( keyboard, key ) => {
-  return `/models/keyboards/keys/${keyboard.keys}/${key.model}.glb`
-}
-  
 
 export const getComponentTextures = ( texturesToGet, resources ) => {
 

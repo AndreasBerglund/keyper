@@ -1,7 +1,7 @@
 {
     "mode" : "standard",
     "size" : "65",
-    "layout" : "ANSI",
+    "layout" : "ISO",
     "keys" : "pineapple",
     "case" : "pineapple", 
     "print" : {
