@@ -27,13 +27,13 @@ const Scene = ({ resources }) => {
             <axesHelper />
         
             <CameraControls />
-            <ambientLight intensity={0.2} />
+            <ambientLight intensity={0.1} />
             <directionalLight castShadow position={pos} angle={0.15} penumbra={2} shadow-mapSize={new THREE.Vector2(2048, 2048)}  />
             <axesHelper position={pos} angle={.15} />
-            <pointLight castShadow position={[-15, -10, -10]} shadow-mapSize={new THREE.Vector2(2048 * 5, 2048 * 5)} />
+            <pointLight castShadow position={[-15, -10, -10]} shadow-mapSize={new THREE.Vector2(2048, 2048)} />
 
             <Keyboard caseProp={resources.case} keysProp={resources.keys} />       
-            {/* <Env resources={resources} /> */}
+            <Env resources={resources.scene} />
 
         </Canvas>
     )

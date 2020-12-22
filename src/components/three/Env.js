@@ -1,25 +1,23 @@
 import { RepeatWrapping } from 'three'
-import { getTexturesByMaterial, getComponentTextures, getEnvironmentData } from '../../helpers/dataLoader'
  
-const Scene = ({resources}) => {
+const Env = ({resources}) => {
   
-    //Textures in resources
-    const texturesToGet = getTexturesByMaterial(getEnvironmentData().floor.material)
-    const textureProps = getComponentTextures(texturesToGet, resources)
+    const textures = resources.textures
 
-    for(const texture in textureProps ) {
-        textureProps[texture].wrapS = RepeatWrapping
-        textureProps[texture].wrapT = RepeatWrapping
-        textureProps[texture].repeat.set(3, 3)
+    for(const texture in textures ) {
+        textures[texture].wrapS = RepeatWrapping
+        textures[texture].wrapT = RepeatWrapping
+        textures[texture].repeat.set(3, 3)
+        textures[texture].anisotropy = 1000
     }
 
     return (
         <mesh receiveShadow rotation={[0,0,90*0.0174532925]}>
             <planeBufferGeometry args={[40, 120]} />
-            <meshStandardMaterial attach="material" {...textureProps} roughness={1} />
+            <meshStandardMaterial attach="material" map={textures['map']} roughness={.82} />
         </mesh>
     )
 
 }
 
-export default Scene
+export default Env

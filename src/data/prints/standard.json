@@ -1,0 +1,24 @@
+{
+    "alphanumeric" : {
+
+    },
+    "win" : {
+
+    }, 
+    "modifiers" : {
+        "ctrl_l" : {
+            "type" : "dynamic",
+            "symbols" : [
+                "ctrl"
+            ] 
+        },
+        "alt_l" : {
+            "type" : "dynamic",
+            "symbols" : [
+                "alt"
+            ] 
+        }
+    }
+
+
+}

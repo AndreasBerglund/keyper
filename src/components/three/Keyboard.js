@@ -4,16 +4,15 @@ import Key from './Key.js'
 
 
 const Keyboard = ({ caseProp , keysProp }) => {
-    let key_id = 0;
+
     return (
         <>
             <Case geometry={caseProp.geometry} textures={caseProp.textures} />
             <group position={[0, 0, caseProp.data.keyZ]} rotation={[caseProp.data.angle, 0, 0]}>
                 {
                  
-                    keysProp.map( keys => {
-                        key_id++
-                        return <Key key={key_id} {...keys} /> //model, position, textures
+                    keysProp.map( key => {
+                        return <Key key={key.key_id} {...key} /> //model, position, textures
                     })
                 }
             </group>

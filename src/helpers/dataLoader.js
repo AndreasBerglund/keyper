@@ -1,4 +1,3 @@
-import presets from '../data/presets.json'
 import layouts from '../data/layouts.json'
 import maps from '../data/maps.json'
 import keys from '../data/keys.json'
@@ -6,10 +5,10 @@ import cases from '../data/cases.json'
 import materials from '../data/materials.json'
 import environment from '../data/environment.json'
 
-export const getPreset = ( preset ) => {
-    //return design props such possible layouts and sizes and case material and positioning factors
-    return presets[preset]
-}
+export const getPrintSymbol = ( identifier, settings ) => {
+  //get 
+} 
+
 
 export const getEnvironmentData = () => {
   return environment
@@ -32,7 +31,6 @@ export const getKeyData = ( design ) => {
 export const getTexturesByMaterial = ( material ) => {
   //Get textures used by a material, return array of type and path to texture
   const base_path = `/textures/materials/${material}`
-    
   return materials[material].map( texture => { return {type:texture, path:`${base_path}/${texture}.jpg`} })
 }
 
