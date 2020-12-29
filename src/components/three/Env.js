@@ -8,7 +8,7 @@ const Env = ({resources}) => {
         textures[texture].wrapS = RepeatWrapping
         textures[texture].wrapT = RepeatWrapping
         textures[texture].repeat.set(3, 3)
-        textures[texture].anisotropy = 1000
+       // textures[texture].anisotropy = 1000
     }
 
     return (

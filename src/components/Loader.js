@@ -9,7 +9,9 @@ const Loader = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems : 'center',
-        fontSize: '2rem'
+        fontSize: '2rem',
+        zIndex: 1000,
+        position: 'fixed'
     }
 
     return (

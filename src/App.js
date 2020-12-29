@@ -1,54 +1,48 @@
 import { useState, useEffect, useReducer } from 'react'
+
+import { buildSceneObject, getGeometry, isInResourcePool, getFromResourcePool, loadTexture } from "./helpers/resourceLoader"
 import initialSettings from './data/settings.json'
-
-import { getCaseData, getKeyData, getKeyLayout, getEnvironmentData } from "./helpers/dataLoader"
-import { getCase, getKeys, getEnv } from "./helpers/resourceLoader"
-
 
 import Scene from './components/three/Scene'
 import Loader from './components/Loader'
 import Interface from './components/Interface'
 import KeyPrinter from './components/KeyPrinter'
+import { DefaultLoadingManager } from 'three'
+import { getRandomColor } from './helpers/helpers'
 
-const resourceReducer = (state, action) => {
+const keyboardReducer = (state, action) => {
     switch (action.type) {
-
-        case 'DATA_LOADED':
+        case 'KEYBOARD_LOAD_INIT':
             return {
                 ...state,
-                isLoading: true,
-                case: { ...state.case, data: action.payload }
+                isLoading: true
             }
-        case 'CASE_RESOURCES_LOADED' : 
-            console.log('case')
+        case 'KEYBOARD_LOADED':
             return {
                 ...state,
-                isLoading: true,
-                case : action.payload
+                isLoading: false,
+                ...action.payload
             }
-        case 'KEY_RESOURCES_LOADED':
+        
+        case 'ADD_RESOURCE_TO_RESOURCE_POOL': 
             return {
                 ...state,
-                isLoading: true,
-                keys: action.payload
-            }
-        case 'KEY_LOADED_PRINT_MAPS' :
-            const newKeys = state.keys;
-            newKeys.forEach((key, index) => {
-                let resourceIndex = action.payload.findIndex( x => x.id === key.key_id); 
-                newKeys[index].textures['map'] = action.payload[resourceIndex].texture ;
-            });
+                resourcePool: [...state.resourcePool, action.payload]
+        }
+        case 'KEYBOARD_LOADED_PRINT_MAPS' :
+            const newKeys = [...state.keys];
+            newKeys.forEach( key => {
+                const resourceIndex = action.payload.findIndex( x => x.id === key.key_id); 
+                const printMap = { type: 'map', resource: action.payload[resourceIndex].texture }
+                const map = key.textures.find( texture => texture.type == 'map' )
+                const arr = [...key.textures]
+                if ( !map ) { arr.push(printMap) } 
+                key.textures = arr
+            })
             return {
                 ...state,
-                isLoading: true,
                 printsLoaded: true,
                 keys: newKeys
-            }
-        case 'ENV_RESOURCES_LOADED' :
-            return {
-                ...state,
-               isLoading: false,
-               scene : action.payload
             }
         default:
             throw new Error()
@@ -56,75 +50,123 @@ const resourceReducer = (state, action) => {
 }
 
 const App = () => {
-    const appStyle = { width: '100%', height: '100vh', backgroundColor: '#ccc' }
+  
+    const appStyle = { width: '100%', height: '100vh', backgroundColor: '#fff' }
+  
     const [settings, setSettings] = useState(initialSettings)
-    const [colors, setColors] = useState( { color : 'red'})
 
-    const [resources, dispatchResources] = useReducer(
-        resourceReducer,
-        { case: {}, keys: [], scene: [], props: [], loading: '', isLoading: false, printsLoaded: false, isError: false }
+    const [keyboard, dispatchKeyboard] = useReducer(
+        keyboardReducer,
+        { case: {}, keys: [], env: [], props: [], resourcePool: [], isLoading: false, printsLoaded: false, isError: false }
     )
-
-    const casedata = getCaseData(settings.case); //could be async
-    const keydata =  getKeyData(settings.keys)
+ 
+    const [color, setColor ] = useState('#fff')
+    const changeColors = (e) => {
+        setColor( getRandomColor() )
+    }
 
     const changeLayout = (e) => {
         setSettings({ ...settings, layout : e.target.value })
     }
-    const changeColors = (e) => {
-        setColors( { color: 'blue'} )
-    }
     const setKeyPrintMaps = ( loadedTextures ) => {
         //set key print maps in resources.keys
-        dispatchResources({ type: 'KEY_LOADED_PRINT_MAPS', payload: loadedTextures } );
+        dispatchKeyboard({ type: 'KEYBOARD_LOADED_PRINT_MAPS', payload: loadedTextures } );
     }
-   
     
+
+    //USE MEMO
+    const loadKeyResources = async ( keys ) => {
+        const resourcePool = keyboard.resourcePool
+
+        for ( const i in keys ) {
+            const key = keys[i]
+
+            //model
+            if ( isInResourcePool(key.model, resourcePool) ) {
+                key.model = getFromResourcePool( key.model.path, resourcePool );
+            } else {
+                const model =  { path: key.model.path, resource: await getGeometry(key.model.path) }
+                key.model = model
+                resourcePool.push( model )
+                dispatchKeyboard({ type: 'ADD_RESOURCE_TO_RESOURCE_POOL', payload: model }) 
+            }
+
+            // //material textures
+            for ( const j in key.textures ) {
+                const texture = key.textures[j]
+                if ( isInResourcePool( texture, resourcePool ) ) {
+                    texture.resource = getFromResourcePool( texture.path, resourcePool ).resource
+                } else { 
+                    texture.resource = await loadTexture( texture.path )
+                    const texture_resource = { path : texture.path, resource : texture.resource }
+                    resourcePool.push(texture_resource)
+                    dispatchKeyboard({ type: 'ADD_RESOURCE_TO_RESOURCE_POOL', payload: texture_resource }) 
+
+                }
+            }
+
+        }
+        return keys
+    }   
+
+    //USE MEMO
+    const loadResource = async ( caseObj ) => {
+        const resourcePool = keyboard.resourcePool
+        if ( isInResourcePool( caseObj.model , resourcePool ) ) {
+            caseObj.model = getFromResourcePool( caseObj.model.path, resourcePool )
+        } else { 
+            const model =  { path: caseObj.model.path, resource: await getGeometry(caseObj.model.path) }
+            caseObj.model = model
+            resourcePool.push( model )
+            dispatchKeyboard({ type: 'ADD_RESOURCE_TO_RESOURCE_POOL', payload: model }) 
+        }
+        return caseObj
+    }
+
+
     useEffect(() => {
-        dispatchResources({ type: 'DATA_LOADED', payload: casedata })
-        
-        console.log('reload')
-        
-        
-        //LOAD KEY DATA, MODEL AND TEXTURES
-        const rows = getKeyLayout(settings);
-        getCase(settings, casedata).then( res => {
-            dispatchResources({ type: 'CASE_RESOURCES_LOADED', payload: res });
-            getKeys(rows, settings, casedata, keydata).then(res => {
-                dispatchResources({ type: 'KEY_RESOURCES_LOADED', payload: res });
-                getEnv( getEnvironmentData() ).then( res => {
-                    dispatchResources({ type: 'ENV_RESOURCES_LOADED', payload: res });
+
+
+        dispatchKeyboard({ type: 'KEYBOARD_LOAD_INIT'})
+        buildSceneObject(settings).then( sceneObj => {           
+            loadKeyResources(sceneObj.keys).then( keysWithResources => {
+                sceneObj.keys = keysWithResources
+                loadResource(sceneObj.case).then( caseWithResources  => {
+                    sceneObj.case = caseWithResources
+                    loadResource(sceneObj.props[0]).then( aprop => {
+                        sceneObj.props[0] = aprop
+                        dispatchKeyboard({ type: 'KEYBOARD_LOADED', payload: sceneObj })
+                    })
+                
                 })
             })
+
         })
-        
-        
-        // DefaultLoadingManager.onLoad = () => { dispatchResources({ type: "THREE_READY"}); console.log('finished loading ')}
-        // DefaultLoadingManager.onError = err => console.log(err)
-        // DefaultLoadingManager.onProgress = ( url, itemsLoaded, itemsTotal ) => {
+
+
+        DefaultLoadingManager.onLoad = () => { console.log('resourecs loaded')}
+        DefaultLoadingManager.onError = err => console.log(err)
+        DefaultLoadingManager.onProgress = ( url, itemsLoaded, itemsTotal ) => {
     
-        //     console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
-        
-        // };
+            console.log( 'Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+            if ( itemsLoaded === itemsTotal ) {
+                //dispatchResources({type: 'RESOURCES_LOADED'})
+            }
+
+        };
     
         
     }, [settings])
 
-    useEffect(() => {
-        console.log('some settings change')
-    }, [colors])
+
 
     return (
         <div className="App" style={appStyle} >
-            { resources.isLoading ? <Loader /> : 
+            { keyboard.isLoading ? <Loader /> : 
                 <>
-                { !resources.printsLoaded ? 
-                    <KeyPrinter keys={ resources.keys } setKeyPrintMaps={setKeyPrintMaps} /> :
-                    <>
-                        <Interface changeLayout={changeLayout} changeColors={changeColors} />
-                        <Scene resources={ resources } /> 
-                    </>
-                }
+                    <Interface changeLayout={changeLayout} changeColors={changeColors} />
+                    <KeyPrinter keys={ keyboard.keys } setKeyPrintMaps={setKeyPrintMaps} color={color} /> 
+                    { keyboard.printsLoaded ? <><Scene keyboard={ keyboard } /></> : null }
                 </>
             }
         </div>

@@ -9,6 +9,7 @@ import { softShadows } from '@react-three/drei'
 //Component 
 import Keyboard from './Keyboard.js'
 import Env from './Env.js'
+import Prop from './Prop.js'
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
 extend({ OrbitControls });
@@ -20,10 +21,25 @@ extend({ OrbitControls });
 //     rings: 11, // Rings (default: 11)
 //   })
 
-const Scene = ({ resources }) => {
+
+
+const styleOut = {
+    opacity : 0
+}
+const styleIn = {
+    transition: 'opacity 1s ease-in',
+    opacity: 1
+}
+
+const Scene = ({ keyboard }) => {
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => {
+        setMounted(true)
+    }, [])
+
     const pos = [15, 5, 15]
     return (
-        <Canvas shadowMap>
+        <Canvas shadowMap style={ mounted ? styleIn : styleOut }>
             <axesHelper />
         
             <CameraControls />
@@ -31,9 +47,9 @@ const Scene = ({ resources }) => {
             <directionalLight castShadow position={pos} angle={0.15} penumbra={2} shadow-mapSize={new THREE.Vector2(2048, 2048)}  />
             <axesHelper position={pos} angle={.15} />
             <pointLight castShadow position={[-15, -10, -10]} shadow-mapSize={new THREE.Vector2(2048, 2048)} />
-
-            <Keyboard caseProp={resources.case} keysProp={resources.keys} />       
-            <Env resources={resources.scene} />
+            <Prop data={keyboard.props[0]} />
+            <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />       
+            {/* <Env resources={resources.scene} /> */}
 
         </Canvas>
     )
