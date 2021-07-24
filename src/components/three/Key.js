@@ -34,7 +34,7 @@ const Key = ({ model, position, textures }) => {
       <meshPhysicalMaterial
         {..._textures}
         metalness={0}
-        roughness={0.5}
+        roughness={0.15}
         reflectivity={1}
         clearcoat={.4}
       />

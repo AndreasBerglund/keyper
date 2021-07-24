@@ -10,7 +10,7 @@ const KeyPrint = ({ keyData, setTextureLoaded, color }) => {
         right: 0,
         top: 0,
         backgroundColor : 'blue',
-        display : 'block'
+        display : 'none'
     }
     
     const canvas = useRef(null)

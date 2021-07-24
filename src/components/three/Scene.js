@@ -1,14 +1,15 @@
-import * as THREE from 'three';
+
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
-import { useRef, useEffect, Suspense, useState, useMemo } from 'react';
+import { useRef, useEffect, useState} from 'react';
 import { softShadows } from '@react-three/drei'
 
 
-//Component 
+//Components
+import Lights from './Lights' 
 import Keyboard from './Keyboard.js'
-import Env from './Env.js'
+import Floor from './Floor.js'
 import Prop from './Prop.js'
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
@@ -31,25 +32,21 @@ const styleIn = {
     opacity: 1
 }
 
-const Scene = ({ keyboard }) => {
+const Scene = ({ scene, keyboard }) => {
     const [mounted, setMounted] = useState(false)
     useEffect(() => {
         setMounted(true)
     }, [])
 
-    const pos = [15, 5, 15]
     return (
         <Canvas shadowMap style={ mounted ? styleIn : styleOut }>
             <axesHelper />
         
             <CameraControls />
-            <ambientLight intensity={0.1} />
-            <directionalLight castShadow position={pos} angle={0.15} penumbra={2} shadow-mapSize={new THREE.Vector2(2048, 2048)}  />
-            <axesHelper position={pos} angle={.15} />
-            <pointLight castShadow position={[-15, -10, -10]} shadow-mapSize={new THREE.Vector2(2048, 2048)} />
-            <Prop data={keyboard.props[0]} />
+            <Lights />
+            <Prop data={scene.props[0]} />
             <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />       
-            {/* <Env resources={resources.scene} /> */}
+            <Floor floor={scene.floor} />
 
         </Canvas>
     )
@@ -66,10 +63,15 @@ const CameraControls = ({ target }) => {
     } = useThree();
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
-    camera.position.z = 15
-    camera.position.x = 10
-    camera.position.y = 3
-    useFrame((state) => controls.current.update());
+    const [pos, setPos] = useState([10,3,15])
+    camera.position.x = pos[0]
+    camera.position.y = pos[1]
+    camera.position.z = pos[2]
+    useFrame((state) => {
+        //console.log(camera.position)
+        setPos([camera.position.x, camera.position.y, camera.position.z])
+        controls.current.update()
+    });
     return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]}keyPanSpeed={20} minAzimuthAngle={-Math.PI / 2, Math.PI / 2} enableKeys={false} enableRotate={true} />;
 };
 

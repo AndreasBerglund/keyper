@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loader = () => {
+const Loader = ({zIndex}) => {
 
     const loaderStyle = {
         width: '100%',
@@ -10,12 +10,14 @@ const Loader = () => {
         justifyContent: 'center',
         alignItems : 'center',
         fontSize: '2rem',
-        zIndex: 1000,
-        position: 'fixed'
+        zIndex: zIndex,
+        position: 'fixed',
+        color: 'black'
     }
 
     return (
         <div style={loaderStyle}>
+       
             Loading...
         </div>
     )

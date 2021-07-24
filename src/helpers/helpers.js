@@ -1,3 +1,6 @@
+
+
+
 export const getRandomColor = () => {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -10,17 +13,3 @@ export const getRandomColor = () => {
 }
 
 
-// export const getComponentTextures = ( texturesToGet, resources ) => {
-
-//     const textures = texturesToGet.map(textureObj => {
-//         return resources.textures.find(texture => texture.path === textureObj.path)
-//     })
-  
-//     const textureProps = {}
-  
-//     textures.forEach(texture => {
-//         const obj = {}
-//         textureProps[texture.type] = texture.texture
-//     })
-//     return textureProps
-//   }
