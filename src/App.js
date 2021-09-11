@@ -204,16 +204,16 @@ const App = () => {
         })
 
 
-        // DefaultLoadingManager.onLoad = () => { console.log('resourecs loaded') }
-        // DefaultLoadingManager.onError = err => console.log(err)
-        // DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+        DefaultLoadingManager.onLoad = () => { console.log('resourecs loaded') }
+        DefaultLoadingManager.onError = err => console.log(err)
+        DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
 
-        //     // console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
-        //     if (itemsLoaded === itemsTotal) {
-        //         //dispatchResources({type: 'RESOURCES_LOADED'})
-        //     }
+            console.log('Loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.');
+            if (itemsLoaded === itemsTotal) {
+                //dispatchResources({type: 'RESOURCES_LOADED'})
+            }
 
-        // };
+        };
 
 
     }, [settings])

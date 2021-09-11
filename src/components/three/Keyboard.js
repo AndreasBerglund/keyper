@@ -4,6 +4,7 @@ import Key from './Key.js'
 
 const Keyboard = ({ caseProp , keysProp }) => {
     const rotationZ =.04
+    console.log(caseProp)
     return (
         <>
             <Case geometry={caseProp.model.resource} textures={caseProp.textures} rotation={[0,0,rotationZ]} />

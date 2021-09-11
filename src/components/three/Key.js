@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { getRandomColor } from '../../helpers/helpers'
 
 
 const Key = ({ model, position, textures }) => {
@@ -28,11 +29,12 @@ const Key = ({ model, position, textures }) => {
   // 
   return (
     <>
-    <mesh castShadow receiveShadow position={keyPosition} onClick={clickedKey}  onPointerOver={e => setHover(true)}
+    <mesh castShadow={false} receiveShadow={false} position={keyPosition} onClick={clickedKey}  onPointerOver={e => setHover(true)}
     onPointerOut={e => setHover(false)}>
       <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
       <meshPhysicalMaterial
         {..._textures}
+        color={getRandomColor()}
         metalness={0}
         roughness={0.15}
         reflectivity={1}

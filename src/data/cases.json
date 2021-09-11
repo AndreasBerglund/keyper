@@ -1,11 +1,11 @@
 {
     "pineapple": {
-        "rimX": 0.45,
-        "rimY": 0.45,
-        "keyZ": 0.35,
+        "rimX": 0.2,
+        "rimY": 0.25,
+        "keyZ": 0.55,
         "angle": 0.03490658,
         "gap": 0.085,
-        "material": "plastic3",
+        "material": "wood1",
         "sizes" : [
             "65"
         ]

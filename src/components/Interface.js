@@ -12,7 +12,7 @@ const Interface = ({ changeLayout, changeColors }) => {
 
     return (
         <div style={interFaceStyle}>
-            <h1>TASTIC!</h1><p><small>v.0.0.1</small></p>
+            <h1>Tasty keys</h1><p><small>v.0.0.1</small></p>
             <button onClick={changeLayout} value='ISO' >ISO</button>
             <button onClick={changeLayout} value='ANSI' >ANSI</button>
             <button onClick={changeColors} value='blue' >blue</button>
