@@ -9,3 +9,12 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// Basic Architecture
+// App
+//   ContextProviders
+//       - Keyboard
+//       - Interface
+//     KeyPrinter
+//     Interface
+//     Scene
+//        - useContextBridge

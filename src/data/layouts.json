@@ -17,36 +17,36 @@
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":1.25},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map":"x","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "fn","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":2},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":3}
+                            {"type":"modifier","map" : "shift_left","model":"1.25x1r1","width":1.25},
+                            {"type":"alphanumeric","map" : "z","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "x","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "c","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "v","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "b","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "n","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "m","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "comma","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "period","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "forward_slash","model":"1x1r2","width":2},
+                            {"type":"modifier","map" : "shift_right","model":"1x1r2","width":3}
                         ]
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":1.5},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map":"x","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "fn","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":2},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":3}
+                            {"type":"modifier","map" : "caps_lock","model":"1.25x1r1","width":1.5},
+                            {"type":"alphanumeric","map" : "a","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "s","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map":"d","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "d","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "f","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "g","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "h","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "j","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "k","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "l","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "single_quote","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "double_quote","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "return","model":"1x1r2","width":3}
                         ]
                     },
                     {
@@ -64,6 +64,24 @@
                             {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
                             {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
                             {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":3}
+                        ]
+                    },                   
+                    {
+                        "keys" : [
+                            {"type":"modifier","map" : "ctrl_r","model":"1x1r1","width":1},
+                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map":"x","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "fn","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
+                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
+                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
+                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":3}
                         ]
                     }                   
                        

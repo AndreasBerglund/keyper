@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useContext } from 'react'
+import { DispatchInterfaceContext } from '../../context/InterfaceProvider'
 import { getRandomColor } from '../../helpers/helpers'
 
 
-const Key = ({ model, position, textures }) => {
+const Key = ({ model, position, textures, key_id }) => {
 
   const geometry = model.resource.scene.clone(true)
 
@@ -17,6 +18,8 @@ const Key = ({ model, position, textures }) => {
   })
 
 
+  const dispatchInterface = useContext(DispatchInterfaceContext);
+
   const [keyPosition, setKeyPosition] = useState([position.x, position.y, 0])
 
   const [hovered, setHover] = useState(false)
@@ -24,7 +27,12 @@ const Key = ({ model, position, textures }) => {
 
 
   const clickedKey = (e) => {
-    setSelected( !selected )
+    if ( !selected ) {
+      dispatchInterface({type:"select", payload: key_id});
+    } else {
+      dispatchInterface({type:"deselect", payload: key_id});
+    }
+    setSelected( !selected );
   }
   // 
   return (
@@ -34,7 +42,7 @@ const Key = ({ model, position, textures }) => {
       <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
       <meshPhysicalMaterial
         {..._textures}
-        color={getRandomColor()}
+        // color={getRandomColor()}
         metalness={0}
         roughness={0.15}
         reflectivity={1}
@@ -44,7 +52,7 @@ const Key = ({ model, position, textures }) => {
     <mesh position={keyPosition} visible={hovered ? true : false } >
       <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
       <meshBasicMaterial  color={'#fff'} 
-      //  transparent={true} opacity={.9}
+       transparent={true} opacity={.19}
         />
     </mesh>  
     <mesh position={keyPosition} visible={selected ? true : false }>

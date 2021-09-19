@@ -55,7 +55,8 @@ export const buildKeyboardObject = (settings) => new Promise((resolve, reject) =
                     'x': accumulated_width - key.width,
                     'y': accumulated_height - 1
                 },
-                'textures': textures
+                'textures': textures,
+                'map': key.map
             }
             keys.push(thisKey);
         }

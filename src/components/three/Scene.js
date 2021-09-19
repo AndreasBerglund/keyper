@@ -2,8 +2,8 @@
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
-import { useRef, useEffect, useState} from 'react';
-import { softShadows } from '@react-three/drei'
+import { useRef, useContext, useEffect, useState} from 'react';
+import { useContextBridge } from '@react-three/drei'
 
 
 //Components
@@ -11,6 +11,7 @@ import Lights from './Lights'
 import Keyboard from './Keyboard.js'
 import Floor from './Floor.js'
 import Prop from './Prop.js'
+import InterfaceProvider, { DispatchInterfaceContext, StateInterfaceContext } from '../../context/InterfaceProvider';
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
 extend({ OrbitControls });
@@ -25,6 +26,7 @@ extend({ OrbitControls });
 
 
 const styleOut = {
+    transition: 'opacity 1s ease-in',
     opacity : 0
 }
 const styleIn = {
@@ -32,25 +34,38 @@ const styleIn = {
     opacity: 1
 }
 
-const Scene = ({ scene, keyboard }) => {
+const Scene = ({ scene, keyboard, onMounted }) => {
     const [mounted, setMounted] = useState(false)
     useEffect(() => {
         setMounted(true)
+        onMounted();
     }, [])
 
+    const ContextBridge = useContextBridge(StateInterfaceContext, DispatchInterfaceContext);
+
     return (
-        <Canvas shadowMap style={ mounted ? styleIn : styleOut }>
+
+
+        <Canvas shadowMap style={ mounted ? styleIn : styleOut } >
+            <ContextBridge>
+              {/* <color attach="background" args={"#cccccc"} /> */}
+     
             <axesHelper />
         
             <CameraControls />
+
             <Lights />
             <Prop data={scene.props[0]} />
             <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />       
             <Floor floor={scene.floor} />
+            </ContextBridge>
 
         </Canvas>
+   
+
     )
 }
+
 
 
 const CameraControls = ({ target }) => {
@@ -72,7 +87,7 @@ const CameraControls = ({ target }) => {
         setPos([camera.position.x, camera.position.y, camera.position.z])
         controls.current.update()
     });
-    return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]}keyPanSpeed={20} minAzimuthAngle={-Math.PI / 2, Math.PI / 2} enableKeys={false} enableRotate={true} />;
+    return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]} keyPanSpeed={20} maxPolarAngle={Math.PI/1.2} minPolarAngle={Math.PI/3} maxAzimuthAngle={Math.PI/3} minAzimuthAngle={-Math.PI / 3} enableKeys={false} enableRotate={true} />;
 };
 
 

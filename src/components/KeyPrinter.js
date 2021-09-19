@@ -24,16 +24,18 @@ const KeyPrint = ({ keyData, setTextureLoaded, color }) => {
     }, [])
 
     useEffect(() => {
+        console.log(keyData)
         if ( canvasTexture ) {
             const ctx = canvas.current.getContext('2d')
             ctx.canvas.width = 1024;
             ctx.canvas.height = 1024;
             ctx.fillStyle = color//getRandomColor();
             ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            ctx.font = '70px Roboto';
+            ctx.font = '70px Rubik';
             ctx.textAlign = 'center'
-            ctx.fillStyle = getRandomColor()
-            ctx.fillText(canvasTexture.uuid, ctx.canvas.width/2, ctx.canvas.height/2.5)
+            ctx.fillStyle = '#333';//getRandomColor()
+            ctx.fillText(keyData.map, ctx.canvas.width/2, ctx.canvas.height/2.5)
+            // canvasTexture.uuid
         }
     })
 

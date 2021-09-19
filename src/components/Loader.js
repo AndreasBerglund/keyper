@@ -1,24 +1,26 @@
-import React from 'react'
+import React from 'react';
+import Spinner from 'react-spinner-material';
 
-const Loader = ({zIndex}) => {
-
+const Loader = ({zIndex, ready}) => {
+    
     const loaderStyle = {
-        width: '100%',
+        width: 'calc(100% - 230px)',
         height: '100%',
-        background: 'white',
+        background: 'black',
         display: 'flex',
         justifyContent: 'center',
         alignItems : 'center',
         fontSize: '2rem',
         zIndex: zIndex,
         position: 'fixed',
-        color: 'black'
+        color: 'black',
+        transition: 'all 0.4s'
     }
 
     return (
         <div style={loaderStyle}>
-       
-            Loading...
+            <Spinner radius={60} color={"#ccc"} stroke={5} visible={ready} />
+            {/* Loading... */}
         </div>
     )
 }

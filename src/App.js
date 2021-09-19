@@ -2,13 +2,13 @@ import { useState, useEffect, useReducer } from 'react'
 import './App.css';
 import { buildSceneObject, buildKeyboardObject, isInResourcePool, getFromResourcePool, getGeometry, loadTexture } from "./helpers/resourceLoader"
 import initialSettings from './data/settings.json'
-
 import Scene from './components/three/Scene'
 import Loader from './components/Loader'
 import Interface from './components/Interface'
 import KeyPrinter from './components/KeyPrinter'
 import { DefaultLoadingManager } from 'three'
 import { getRandomColor } from './helpers/helpers'
+import InterfaceProvider from './context/InterfaceProvider';
 
 const sceneReducer = (state, action) => {
     switch (action.type) {
@@ -43,6 +43,15 @@ const keyboardReducer = (state, action) => {
                 isLoading: false,
                 ...action.payload
             }
+
+        case 'KEY_COLOR_CHANGE' : {
+
+            console.log(state.keys)
+                return {
+                    ...state
+                    
+                }
+        }
 
         case 'ADD_RESOURCE_TO_RESOURCE_POOL':
             return {
@@ -98,7 +107,7 @@ const App = () => {
     }
 
     //Takes a obj ( resource ) as an argument and returns it populated with a model resource ( gltf ) model { path: '/path_to_resource', resource: null}
-    const loadResource = async ( resource ) => {
+    const loadResource = async (resource) => {
         const resourcePool = keyboard.resourcePool
         if (isInResourcePool(resource, resourcePool)) {
             resource = getFromResourcePool(resource.path, resourcePool)
@@ -112,8 +121,8 @@ const App = () => {
     }
 
     //Iterates props and populates with resources
-    const loadPropResources = async ( props ) => {
-        for ( const i in props ) {
+    const loadPropResources = async (props) => {
+        for (const i in props) {
             const prop = props[i]
             prop.model = await loadResource(prop.model)
         }
@@ -178,9 +187,9 @@ const App = () => {
         dispatchScene({ type: 'SCENE_LOAD_INIT' })
         //load scene
         buildSceneObject().then(sceneObj => {
-            loadTextures( sceneObj.floor.textures ).then( sceneTextures => {
+            loadTextures(sceneObj.floor.textures).then(sceneTextures => {
                 sceneObj.floor.textures = sceneTextures
-                loadPropResources( sceneObj.props ).then ( propsWithResources => {
+                loadPropResources(sceneObj.props).then(propsWithResources => {
                     dispatchScene({ type: 'SCENE_LOADED', payload: sceneObj })
                 })
             })
@@ -196,9 +205,10 @@ const App = () => {
         buildKeyboardObject(settings).then(keyboardObj => {
             loadKeyResources(keyboardObj.keys).then(keysWithResources => {
                 keyboardObj.keys = keysWithResources
-                loadResource(keyboardObj.case.model).then( modelWithResource => {
+                loadResource(keyboardObj.case.model).then(modelWithResource => {
                     keyboardObj.case.model = modelWithResource
                     dispatchKeyboard({ type: 'KEYBOARD_LOADED', payload: keyboardObj })
+                   
                 })
             })
         })
@@ -218,17 +228,24 @@ const App = () => {
 
     }, [settings])
 
+    const [ready, setReady] = useState(false);
 
-    return (
-        <div className="App" style={appStyle} >
-            { keyboard.isLoading || scene.isLoading ? <Loader zIndex={1000} /> :
-                <>
-                    <KeyPrinter keys={keyboard.keys} setKeyPrintMaps={setKeyPrintMaps} color={color} />
-                    <Loader zIndex={0} />
-                    { keyboard.printsLoaded ? <><Interface changeLayout={changeLayout} changeColors={changeColors} /><Scene scene={scene} keyboard={keyboard} /></> : null }
-                </>
-            }
-        </div>
+    return (    
+        <InterfaceProvider>
+
+            <div className="App" style={appStyle} >
+                {keyboard.isLoading || scene.isLoading ? <Loader zIndex={1000} /> :
+                    <>
+                        <KeyPrinter keys={keyboard.keys} setKeyPrintMaps={setKeyPrintMaps} color={color} />
+                        <Loader zIndex={0} ready={ready} />
+                        {keyboard.printsLoaded ? <><Interface changeLayout={changeLayout} changeColors={changeColors} /><Scene scene={scene} keyboard={keyboard} onMounted={ () => { setReady(true) } } /></> : null}
+                    </>
+                }
+            </div>
+
+        </InterfaceProvider>
+       
+       
     )
 }
 
