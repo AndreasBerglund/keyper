@@ -2,16 +2,18 @@
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
-import { useRef, useContext, useEffect, useState} from 'react';
+import { useRef, useContext, useEffect, useState } from 'react';
 import { useContextBridge } from '@react-three/drei'
 
+//context
+import { DispatchKeyboardContext, StateKeyboardContext } from '../../context/KeyboardProvider';
 
 //Components
-import Lights from './Lights' 
+import Lights from './Lights'
 import Keyboard from './Keyboard.js'
 import Floor from './Floor.js'
 import Prop from './Prop.js'
-import InterfaceProvider, { DispatchInterfaceContext, StateInterfaceContext } from '../../context/InterfaceProvider';
+
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
 extend({ OrbitControls });
@@ -27,7 +29,7 @@ extend({ OrbitControls });
 
 const styleOut = {
     transition: 'opacity 1s ease-in',
-    opacity : 0
+    opacity: 0
 }
 const styleIn = {
     transition: 'opacity 1s ease-in',
@@ -41,27 +43,30 @@ const Scene = ({ scene, keyboard, onMounted }) => {
         onMounted();
     }, [])
 
-    const ContextBridge = useContextBridge(StateInterfaceContext, DispatchInterfaceContext);
-
+    const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext);
+    const {modelsLoaded, texturesLoaded} = useContext(StateKeyboardContext);
     return (
-
-
-        <Canvas shadowMap style={ mounted ? styleIn : styleOut } >
+        <Canvas shadowMap style={mounted ? styleIn : styleOut} >
             <ContextBridge>
-              {/* <color attach="background" args={"#cccccc"} /> */}
-     
-            <axesHelper />
-        
-            <CameraControls />
+                {/* <color attach="background" args={"#cccccc"} /> */}
+                { modelsLoaded && texturesLoaded && 
+                    <>
+                    <axesHelper />
+                    <CameraControls />
+                    <Lights />
+    
+                    <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />
+                    {scene.props.map(prop => <Prop data={prop} />)}
+                    <Floor floor={scene.floor} />
 
-            <Lights />
-            <Prop data={scene.props[0]} />
-            <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />       
-            <Floor floor={scene.floor} />
+
+                    </>
+                }
+
             </ContextBridge>
 
         </Canvas>
-   
+
 
     )
 }
@@ -78,7 +83,7 @@ const CameraControls = ({ target }) => {
     } = useThree();
     // Ref to the controls, so that we can update them on every frame using useFrame
     const controls = useRef();
-    const [pos, setPos] = useState([10,3,15])
+    const [pos, setPos] = useState([10, 3, 15])
     camera.position.x = pos[0]
     camera.position.y = pos[1]
     camera.position.z = pos[2]
@@ -87,7 +92,7 @@ const CameraControls = ({ target }) => {
         setPos([camera.position.x, camera.position.y, camera.position.z])
         controls.current.update()
     });
-    return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]} keyPanSpeed={20} maxPolarAngle={Math.PI/1.2} minPolarAngle={Math.PI/3} maxAzimuthAngle={Math.PI/3} minAzimuthAngle={-Math.PI / 3} enableKeys={false} enableRotate={true} />;
+    return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]} keyPanSpeed={20} maxPolarAngle={Math.PI / 1.2} minPolarAngle={Math.PI / 3} maxAzimuthAngle={Math.PI / 3} minAzimuthAngle={-Math.PI / 3} enableKeys={false} enableRotate={true} />;
 };
 
 

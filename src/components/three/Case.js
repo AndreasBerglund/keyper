@@ -1,6 +1,10 @@
-const Case = ({ geometry, textures, rotation }) => {
+import React, { useContext } from 'react';
+import { StateKeyboardContext } from '../../context/KeyboardProvider';
+
+const Case = ({ textures, rotation }) => {
     //Case component included in keyboard
-    const w = 15.9, h = 5.35, x = w / 2, y = h / 2, z = .5;
+    const w = 15.9, h = 5.35, x = w / 2, y = h / 2;
+    const { case: caseObj, resources } = useContext(StateKeyboardContext);
 
     return (
         <>
@@ -14,9 +18,13 @@ const Case = ({ geometry, textures, rotation }) => {
                 />
             </mesh>
             <mesh castShadow={true} rotation={rotation}>
-                <bufferGeometry attach="geometry" {...geometry.scene.children[0].geometry} position={[0, 0, 0]} />
+                <bufferGeometry attach="geometry" {...resources.models[caseObj.modelKey].scene.children[0].geometry} position={[0, 0, 0]} />
                 <meshStandardMaterial attach="material"  {...textures} />
             </mesh>
+
+            
+            
+            
         </>
     )
 }

@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
-import { DispatchInterfaceContext } from '../../context/InterfaceProvider'
 import { getRandomColor } from '../../helpers/helpers'
 
 
 const Key = ({ model, position, textures, key_id }) => {
-
+  
   const geometry = model.resource.scene.clone(true)
 
   const _textures = {}
@@ -18,7 +17,7 @@ const Key = ({ model, position, textures, key_id }) => {
   })
 
 
-  const dispatchInterface = useContext(DispatchInterfaceContext);
+  // const dispatchInterface = useContext(DispatchInterfaceContext);
 
   const [keyPosition, setKeyPosition] = useState([position.x, position.y, 0])
 
@@ -28,9 +27,9 @@ const Key = ({ model, position, textures, key_id }) => {
 
   const clickedKey = (e) => {
     if ( !selected ) {
-      dispatchInterface({type:"select", payload: key_id});
+      // dispatchInterface({type:"select", payload: key_id});
     } else {
-      dispatchInterface({type:"deselect", payload: key_id});
+      // dispatchInterface({type:"deselect", payload: key_id});
     }
     setSelected( !selected );
   }

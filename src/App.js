@@ -9,6 +9,8 @@ import KeyPrinter from './components/KeyPrinter'
 import { DefaultLoadingManager } from 'three'
 import { getRandomColor } from './helpers/helpers'
 import InterfaceProvider from './context/InterfaceProvider';
+import SettingsProvider from './context/SettingsProvider';
+import KeyboardProvider from './context/KeyboardProvider';
 
 const sceneReducer = (state, action) => {
     switch (action.type) {
@@ -44,13 +46,13 @@ const keyboardReducer = (state, action) => {
                 ...action.payload
             }
 
-        case 'KEY_COLOR_CHANGE' : {
+        case 'KEY_COLOR_CHANGE': {
 
             console.log(state.keys)
-                return {
-                    ...state
-                    
-                }
+            return {
+                ...state
+
+            }
         }
 
         case 'ADD_RESOURCE_TO_RESOURCE_POOL':
@@ -122,6 +124,7 @@ const App = () => {
 
     //Iterates props and populates with resources
     const loadPropResources = async (props) => {
+
         for (const i in props) {
             const prop = props[i]
             prop.model = await loadResource(prop.model)
@@ -208,7 +211,7 @@ const App = () => {
                 loadResource(keyboardObj.case.model).then(modelWithResource => {
                     keyboardObj.case.model = modelWithResource
                     dispatchKeyboard({ type: 'KEYBOARD_LOADED', payload: keyboardObj })
-                   
+
                 })
             })
         })
@@ -230,22 +233,30 @@ const App = () => {
 
     const [ready, setReady] = useState(false);
 
-    return (    
-        <InterfaceProvider>
+    return (
+        <SettingsProvider>
+            <KeyboardProvider>
+                <InterfaceProvider>
 
-            <div className="App" style={appStyle} >
-                {keyboard.isLoading || scene.isLoading ? <Loader zIndex={1000} /> :
-                    <>
-                        <KeyPrinter keys={keyboard.keys} setKeyPrintMaps={setKeyPrintMaps} color={color} />
-                        <Loader zIndex={0} ready={ready} />
-                        {keyboard.printsLoaded ? <><Interface changeLayout={changeLayout} changeColors={changeColors} /><Scene scene={scene} keyboard={keyboard} onMounted={ () => { setReady(true) } } /></> : null}
-                    </>
-                }
-            </div>
+                    <div className="App" style={appStyle} >
+                        {keyboard.isLoading || scene.isLoading ? <Loader zIndex={1000} /> :
+                            <>
+                                <KeyPrinter keys={keyboard.keys} setKeyPrintMaps={setKeyPrintMaps} color={color} />
+                                <Loader zIndex={0} ready={ready} />
+                                {keyboard.printsLoaded ? 
+                                <>
+                                <Interface changeLayout={changeLayout} changeColors={changeColors} /><Scene scene={scene} keyboard={keyboard} onMounted={() => { setReady(true) }} />
+                                </> : null}
+                            </>
+                        }
+                    </div>
 
-        </InterfaceProvider>
-       
-       
+                </InterfaceProvider>
+            </KeyboardProvider>
+
+        </SettingsProvider>
+
+
     )
 }
 
