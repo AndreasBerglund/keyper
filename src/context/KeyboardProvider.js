@@ -6,22 +6,18 @@ export const DispatchKeyboardContext = createContext();
 export const StateKeyboardContext = createContext();
 
 const initialState = {
-    //    env: [], 
-    //    props: [], 
-    //    resourcePool: [], 
-    //    printsLoaded: false, 
-    //    isError: false
+    isError: false,
     case: {},
     keys: [],
     isLoading: false,
-    modelsLoaded : false,
-    texturesLoaded : false,
+    modelsLoaded: false,
+    texturesLoaded: false,
+    printMapsLoaded: false,
     floor: {},
     resources: {
         models: [],
         textures: []
-    },
-
+    }
 }
 
 const reducer = (state, action) => {
@@ -33,32 +29,71 @@ const reducer = (state, action) => {
             }
         }
         case 'set_key_and_case_objects': {
-            const { keyboardObject, sceneObject } = action.payload; 
+            const { keyboardObject, sceneObject } = action.payload;
             return {
                 ...state,
                 ...keyboardObject,
                 ...sceneObject
             }
         }
-        case 'set_models' : {
+        case 'set_models': {
             const models = action.payload;
-            console.log('models loaded');
             return {
                 ...state,
-                modelsLoaded : true,
-                resources : { ...state.resources, models : models }
+                modelsLoaded: true,
+                resources: { ...state.resources, models: models }
             }
         }
-        case 'set_textures' : {
+        case 'set_textures': {
             const textures = action.payload;
-            console.log('textures loaded');
             return {
                 ...state,
                 texturesLoaded: true,
-                resources : { ...state.resources, textures : textures }
+                resources: { ...state.resources, textures: textures }
             }
         }
-
+        case 'set_print_maps': {
+            const maps = action.payload;
+            const newKeys = [...state.keys];
+            newKeys.forEach(key => {
+                const resourceIndex = maps.findIndex(x => x.id === key.key_id);
+                key.printTexture = maps[resourceIndex].texture;
+            })
+            return {
+                ...state,
+                printMapsLoaded: true,
+                keys: newKeys
+            }
+        }
+        case 'toggle_select_key' : {
+            //toggle selected key by id
+            const key_id_array = action.payload;
+            const keys_new_state = [...state.keys].map( key => {
+                if (key_id_array.indexOf(key.key_id) > -1) {
+                    return { ...key, state : { ...key.state, selected : !key.state.selected }}
+                } else { 
+                    return key;
+                }
+            })
+            return {
+                ...state,
+                keys: keys_new_state
+            }  
+        }
+        case 'set_color' : { 
+            const color = action.payload;
+            const keys_new_state =  [...state.keys].map( key => {
+                if (key.state.selected) {
+                    return { ...key, state : { ...key.state, capColor : color }}
+                } else { 
+                    return key;
+                }
+            })
+            return {
+                ...state,
+                keys: keys_new_state
+            }
+        }
         default: {
             return {
                 ...state
@@ -73,22 +108,22 @@ const KeyboardProvider = ({ children }) => {
 
     useEffect(() => {
 
-        const mainLoader = async() => {
-            dispatch({type: "init"});
+        const mainLoader = async () => {
+            dispatch({ type: "init" });
             //build the resource object from settings
             const keyboardObject = await buildKeyboardObject(settings);
             const sceneObject = await buildSceneObject(settings);
 
-            dispatch({type: "set_key_and_case_objects", payload: { keyboardObject, sceneObject} });
-            
+            dispatch({ type: "set_key_and_case_objects", payload: { keyboardObject, sceneObject } });
+
             //load models
-            const models = await loadModels({ ...keyboardObject, ...sceneObject});
-            dispatch({type: "set_models", payload: models });
-    
+            const models = await loadModels({ ...keyboardObject, ...sceneObject });
+            dispatch({ type: "set_models", payload: models });
+
             //load textures
-            const textures = await loadTextures({ ...keyboardObject, ...sceneObject});
-            dispatch({type:"set_textures", payload: textures});
-        
+            const textures = await loadTextures({ ...keyboardObject, ...sceneObject });
+            dispatch({ type: "set_textures", payload: textures });
+
         }
 
         if (Object.keys(settings).length > 0) {

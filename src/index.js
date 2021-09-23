@@ -1,10 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import KeyboardProvider from './context/KeyboardProvider';
+import SettingsProvider from './context/SettingsProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SettingsProvider>
+    <KeyboardProvider>
+      <App />
+    </KeyboardProvider>
+    </SettingsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -12,8 +18,8 @@ ReactDOM.render(
 // Basic Architecture
 // App
 //   ContextProviders
+//       - Settings
 //       - Keyboard
-//       - Interface
 //     KeyPrinter
 //     Interface
 //     Scene

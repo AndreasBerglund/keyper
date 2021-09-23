@@ -40,34 +40,45 @@ export const buildKeyboardObject = async (settings) => {
     const keys = []
     const rows = getKeyLayout(settings)
     let accumulated_height = casedata.rimY
+    let idxRow = 0;
     for (const row of rows) {
         accumulated_height += 1 + casedata.gap
         let accumulated_width = casedata.rimX
+        let idxCol = 0;
         for (const key of row.keys) {
             accumulated_width += key.width + casedata.gap
-            const key_id = uuidv4()
+            // const key_id = uuidv4();
             const thisKey = {
-                'key_id': key_id,
-                'type': key.type,
-                'model': { path: `/models/keyboards/keys/${settings.keys}/${key.model}.glb`, resource: null },
-                'modelKey': `/models/keyboards/keys/${settings.keys}/${key.model}.glb`,
-                'position': {
-                    'x': accumulated_width - key.width,
-                    'y': accumulated_height - 1
+                key_id: `${idxRow}.${idxCol}`,
+                type: key.type,
+                modelKey: `/models/keyboards/keys/${settings.keys}/${key.model}.glb`,
+                position: {
+                    x: accumulated_width - key.width,
+                    y: accumulated_height - 1,
+                    col : idxCol,
+                    row : idxRow
                 },
-                'textures': textures,
-                'map': key.map
+                textures: textures,
+                printTexture : {},
+                map: key.map,
+                state : {
+                    selected : false,
+                    capColor: "#ccc",
+                    charColor: "#333"
+                } 
             }
+            idxCol++;
             keys.push(thisKey);
         }
+        idxRow++;
     }
 
-    const sceneObj = {
+    const caseObj = {
         case: { data: casedata, modelKey: `/models/keyboards/cases/${settings.case}/${settings.size}/case.glb`, model: { path: `/models/keyboards/cases/${settings.case}/${settings.size}/case.glb`, resource: null }, textures: null },
         keys: keys
     }
 
-    return sceneObj
+    return caseObj
 };
 
 //Scene object {} builder. Returns an object regarding everything but the keyboard. used in sceneReducer
@@ -111,7 +122,11 @@ export const loadTextures = async (object) => {
         const texture = await loadTexture(key);
         return { key : key, texture : texture }
     }))
-    return textures
+    const texturesObject = {};
+    textures.forEach( obj => {
+        texturesObject[obj.key] = obj.texture
+    })
+    return texturesObject
 }
 
 //search for a value within object recursively.

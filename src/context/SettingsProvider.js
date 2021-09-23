@@ -4,7 +4,7 @@ import initialSettings from '../data/settings.json'
 export const DispatchSettingsContext = createContext();
 export const StateSettingsContext = createContext();
 
-const initialState = initialSettings
+const initialState = {...initialSettings, isLoading : false, isReady: true}
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -26,12 +26,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 selectedKeys: state.selectedKeys.splice(index, 1)
-            }
-        }
-        case 'changeColor' : {
-            const value = action.payload;
-            return { 
-                ...state,
             }
         }
         default: {

@@ -1,65 +1,74 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
-import { getRandomColor } from '../../helpers/helpers'
+import React, { useEffect, useState, useContext } from 'react'
+import { DispatchKeyboardContext, StateKeyboardContext } from '../../context/KeyboardProvider'
 
+const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
 
-const Key = ({ model, position, textures, key_id }) => {
-  
-  const geometry = model.resource.scene.clone(true)
+  //all resources
+  const dispatchKeyboard = useContext(DispatchKeyboardContext);
+  const { resources, keys } = useContext(StateKeyboardContext);
 
+  //model
+  const model = resources.models[modelKey];
+  const geometry = model.scene.clone(true)
+
+  //textures
   const _textures = {}
-  textures.forEach( texture => {
-    if ( texture.type === 'map' ) {
-      texture.resource.flipX = false
-      texture.resource.flipY = false
-      texture.resource.needsUpdate = true;
-    } 
-    _textures[texture.type] = texture.resource
+  textures.forEach(texture => {
+    const textureResource = resources.textures[texture.textureKey];
+    _textures[texture.type] = textureResource
   })
 
-
-  // const dispatchInterface = useContext(DispatchInterfaceContext);
-
+  //orient print map
+  printTexture.flipX = false
+  printTexture.flipY = false
+  printTexture.needsUpdate = true;
+  
   const [keyPosition, setKeyPosition] = useState([position.x, position.y, 0])
-
+  const selectorPosition = [position.x + .5, position.y + .5, .5]
+  
   const [hovered, setHover] = useState(false)
   const [selected, setSelected] = useState(false)
-
-
+  
   const clickedKey = (e) => {
-    if ( !selected ) {
-      // dispatchInterface({type:"select", payload: key_id});
-    } else {
-      // dispatchInterface({type:"deselect", payload: key_id});
-    }
-    setSelected( !selected );
+    dispatchKeyboard({ type: "toggle_select_key", payload: [key_id] });
   }
-  // 
+  
+  useEffect(() => {
+    const thisKey = keys.find(key => key_id === key.key_id);
+
+    setSelected(thisKey.state.selected)
+  }, [keys])
+
   return (
     <>
-    <mesh castShadow={false} receiveShadow={false} position={keyPosition} onClick={clickedKey}  onPointerOver={e => setHover(true)}
-    onPointerOut={e => setHover(false)}>
-      <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
-      <meshPhysicalMaterial
-        {..._textures}
-        // color={getRandomColor()}
-        metalness={0}
-        roughness={0.15}
-        reflectivity={1}
-        clearcoat={.4}
-      />
-    </mesh>
-    <mesh position={keyPosition} visible={hovered ? true : false } >
-      <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
-      <meshBasicMaterial  color={'#fff'} 
-       transparent={true} opacity={.19}
+      <mesh castShadow={false} receiveShadow={false} position={keyPosition} onClick={clickedKey} onPointerOver={e => setHover(true)}
+        onPointerOut={e => setHover(false)}>
+        <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
+        <meshPhysicalMaterial
+          {..._textures}
+          map={printTexture}
+          metalness={0}
+          roughness={0.15}
+          reflectivity={1}
+          clearcoat={.4}
         />
-    </mesh>  
-    <mesh position={keyPosition} visible={selected ? true : false }>
-      <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
-      <meshBasicMaterial color={'#222222'} flatShading={true} />
-    </mesh>  
-    
-    
+      </mesh>
+      <mesh position={keyPosition} visible={hovered ? true : false} >
+        <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
+        <meshBasicMaterial color={'#fff'}
+          transparent={true} opacity={.19}
+        />
+      </mesh>
+      {/* <mesh position={keyPosition} visible={selected ? true : false}>
+        <bufferGeometry attach="geometry" {...geometry.children[0].geometry} />
+        <meshBasicMaterial color={'#444'} flatShading={true} wireframe />
+      </mesh> */}
+
+      <mesh position={selectorPosition}  visible={selected ? true : false}>
+        <meshBasicMaterial color={'#fff'} flatShading={true}  />
+        <sphereGeometry  args={[.05, 16, 16]}  />
+      </mesh>
+
     </>
 
   )

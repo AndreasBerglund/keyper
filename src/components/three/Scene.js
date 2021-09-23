@@ -1,8 +1,6 @@
-
-
+import { useRef, useContext, useEffect, useState } from 'react';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
-import { useRef, useContext, useEffect, useState } from 'react';
 import { useContextBridge } from '@react-three/drei'
 
 //context
@@ -12,7 +10,7 @@ import { DispatchKeyboardContext, StateKeyboardContext } from '../../context/Key
 import Lights from './Lights'
 import Keyboard from './Keyboard.js'
 import Floor from './Floor.js'
-import Prop from './Prop.js'
+
 
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
@@ -36,38 +34,29 @@ const styleIn = {
     opacity: 1
 }
 
-const Scene = ({ scene, keyboard, onMounted }) => {
+const Scene = ({ onMounted }) => {
     const [mounted, setMounted] = useState(false)
     useEffect(() => {
         setMounted(true)
-        onMounted();
+        // onMounted();
     }, [])
 
     const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext);
-    const {modelsLoaded, texturesLoaded} = useContext(StateKeyboardContext);
+    const { modelsLoaded, texturesLoaded, floor } = useContext(StateKeyboardContext);
     return (
         <Canvas shadowMap style={mounted ? styleIn : styleOut} >
             <ContextBridge>
-                {/* <color attach="background" args={"#cccccc"} /> */}
-                { modelsLoaded && texturesLoaded && 
+                {modelsLoaded && texturesLoaded &&
                     <>
-                    <axesHelper />
-                    <CameraControls />
-                    <Lights />
-    
-                    <Keyboard caseProp={keyboard.case} keysProp={keyboard.keys} />
-                    {scene.props.map(prop => <Prop data={prop} />)}
-                    <Floor floor={scene.floor} />
-
-
+                        <axesHelper />
+                        <CameraControls />
+                        <Lights />
+                        <Keyboard />
+                        <Floor floor={floor} />
                     </>
                 }
-
             </ContextBridge>
-
         </Canvas>
-
-
     )
 }
 
