@@ -7,16 +7,19 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 import "./index.css";
 import ApplierProvider from "./context/ApplierProvider";
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <SettingsProvider>
-        <ApplierProvider>
-          <KeyboardProvider>
-            <App />
-          </KeyboardProvider>
-        </ApplierProvider>
-      </SettingsProvider>
+      
+        <SettingsProvider>
+          <ApplierProvider>
+            <KeyboardProvider>
+              <App />
+            </KeyboardProvider>
+          </ApplierProvider>
+        </SettingsProvider>
+
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -54,3 +54,35 @@ export const PrimaryButton = styled(Button)`
     color: #232323;
   }
 `;
+
+
+export const SmallCloseButton = styled(Button)`
+  /* border: none; */
+  padding: 0;
+  margin : 0;
+  width: 24px;
+  height: 24px;
+  border-width: 1px;
+  border-color: transparent;
+  /* background: #232323; */
+  border-radius: 16px;
+  position: relative;
+  &:after, &:before { 
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 1px;
+    background: #acacac;
+    top: 10px;
+    left: 5px;
+  }
+  &:after { 
+    transform: rotate(45deg)
+  }
+  &:before { 
+    transform: rotate(-45deg)
+  }
+  &:focus, &:active {
+    border-color: transparent;
+  }
+`;

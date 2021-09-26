@@ -101,7 +101,7 @@ const reducer = (state, action) => {
         ) {
           if ( target === "cap") {
             return { ...key, state: { ...key.state, capColorId: colorId } };
-          } else {
+          } else if ( target === 'print') {
             return { ...key, state: { ...key.state, charColorId: colorId } };
           }
         } else {

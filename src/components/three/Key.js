@@ -38,8 +38,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
   const clickedKey = (e) => {
     dispatchKeyboard({
       type: "apply_color",
-      payload: { colorId: selectedColorId, selection: [key_id] },
-      target: target
+      payload: { colorId: selectedColorId, selection: [key_id], target: target },
     });
   };
 
