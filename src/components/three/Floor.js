@@ -19,7 +19,7 @@ const Floor = ({ floor }) => {
   return (
     <mesh receiveShadow rotation={[0, 0, 90 * 0.0174532925]}>
       <planeBufferGeometry args={[40, 120]} />
-      <meshStandardMaterial attach="material" {...textures } map={textures['map']} roughness={.82} />
+      <meshStandardMaterial attach="material" {...textures } map={textures['map']} roughness={100} />
     </mesh>
   )
 

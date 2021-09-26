@@ -4,7 +4,6 @@ import { useProgress } from '@react-three/drei';
 
 const Loader = ({zIndex, ready}) => {
     const { active, progress, errors, item, loaded, total } = useProgress()
-            console.log(progress)
     const loaderStyle = {
         width: 'calc(100% - 230px)',
         height: '100%',

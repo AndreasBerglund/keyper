@@ -63,8 +63,8 @@ export const buildKeyboardObject = async (settings) => {
                 map: key.map,
                 state : {
                     selected : false,
-                    capColor: "#ccc",
-                    charColor: "#333"
+                    capColorId: 1,
+                    charColorId: 1
                 } 
             }
             idxCol++;

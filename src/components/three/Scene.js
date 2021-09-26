@@ -3,8 +3,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
 import { useContextBridge } from '@react-three/drei'
 
-//context
+//context for bridge
 import { DispatchKeyboardContext, StateKeyboardContext } from '../../context/KeyboardProvider';
+import { StateApplierContext } from '../../context/ApplierProvider';
 
 //Components
 import Lights from './Lights'
@@ -24,7 +25,6 @@ extend({ OrbitControls });
 //   })
 
 
-
 const styleOut = {
     transition: 'opacity 1s ease-in',
     opacity: 0
@@ -41,7 +41,7 @@ const Scene = ({ onMounted }) => {
         // onMounted();
     }, [])
 
-    const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext);
+    const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext, StateApplierContext);
     const { modelsLoaded, texturesLoaded, floor } = useContext(StateKeyboardContext);
     return (
         <Canvas shadowMap style={mounted ? styleIn : styleOut} >

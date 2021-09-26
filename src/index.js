@@ -1,18 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import KeyboardProvider from './context/KeyboardProvider';
-import SettingsProvider from './context/SettingsProvider';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App/App";
+import KeyboardProvider from "./context/KeyboardProvider";
+import SettingsProvider from "./context/SettingsProvider";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
+import "./index.css";
+import ApplierProvider from "./context/ApplierProvider";
 ReactDOM.render(
   <React.StrictMode>
-    <SettingsProvider>
-    <KeyboardProvider>
-      <App />
-    </KeyboardProvider>
-    </SettingsProvider>
+    <ThemeProvider theme={theme}>
+      <SettingsProvider>
+        <ApplierProvider>
+          <KeyboardProvider>
+            <App />
+          </KeyboardProvider>
+        </ApplierProvider>
+      </SettingsProvider>
+    </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // Basic Architecture

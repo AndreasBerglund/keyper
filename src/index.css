@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "BillionDreams";
+  src: url("./fonts/BillionDreams.woff2") format("woff2"),
+    url("./fonts/BillionDreams.woff") format("woff");
+}
+body {
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
