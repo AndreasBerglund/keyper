@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Spinner from 'react-spinner-material';
 import { useProgress } from '@react-three/drei';
 
 const Loader = ({zIndex, ready}) => {
-    const { active, progress, errors, item, loaded, total } = useProgress()
+    const { progress } = useProgress()
     const loaderStyle = {
         width: 'calc(100% - 230px)',
         height: '100%',

@@ -24,12 +24,12 @@ const KeyPrint = ({ keyData, setTextureLoaded }) => {
         const texture = new CanvasTexture(canvas.current)
         setTextureLoaded(keyData.key_id, texture)
         setCanvasTexture(texture)
-    }, [])
+    }, [keyData])
 
     useEffect(() => {
         const { state: {capColorId, charColorId} } = keyData;
-        const capColor = colors.find( c => c.id == capColorId)
-        const charColor = colors.find( c => c.id == charColorId)
+        const capColor = colors.find( c => c.id === capColorId)
+        const charColor = colors.find( c => c.id === charColorId)
 
         if ( canvasTexture ) {
             const ctx = canvas.current.getContext('2d')
