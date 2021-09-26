@@ -93,20 +93,27 @@ const reducer = (state, action) => {
       
       console.log(colorId, selection, target)
 
+      const isAllKeys = selection === "all_keys";
+      const isAlphaOrModifier = selection === "modifier" || selection === "alphanumerice";
+      const isArray = Array.isArray(selection);
+
       const keys_new_state = [...state.keys].map((key) => {
         if (
-          ( selection === "alphanumeric" || selection === "modifier" && key.type === selection) ||
-          ( selection === "all_keys") ||
-          (Array.isArray(selection) && selection.indexOf(key.key_id) > -1)
+          ( isAlphaOrModifier && key.type === selection) ||
+          ( isAllKeys ) ||
+          ( isArray && selection.indexOf(key.key_id) > -1)
         ) {
           if ( target === "cap") {
             return { ...key, state: { ...key.state, capColorId: colorId } };
           } else if ( target === 'print') {
             return { ...key, state: { ...key.state, charColorId: colorId } };
+          } else { 
+            return key;
           }
         } else {
           return key;
         }
+       
       });
      
       return {

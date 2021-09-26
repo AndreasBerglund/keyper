@@ -1,7 +1,6 @@
 // Features for building objects regarding models and textures plus features regarding loading resources.
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { TextureLoader } from 'three'
-import { v4 as uuidv4 } from 'uuid';
 import layouts from '../data/layouts.json'
 //import maps from '../data/maps.json'
 import keys from '../data/keys.json'

@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import {
-  DispatchKeyboardContext,
-  StateKeyboardContext,
+  DispatchKeyboardContext
 } from "../../context/KeyboardProvider";
-import { Button, PrimaryButton } from "../shared/Button";
+import { Button } from "../shared/Button";
 import styled from "styled-components";
 import ColorPickerGroup from "./ColorPickerGroup";
 import { DispatchApplierContext, StateApplierContext } from "../../context/ApplierProvider";
 import Toggle from "../shared/Toggle";
 
 const Panel = ({ changeLayout, changeColors }) => {
-  const { keys } = useContext(StateKeyboardContext);
+
   const dispatchKeyboard = useContext(DispatchKeyboardContext);
   const { colors, selectedColorId, target } = useContext(StateApplierContext);
   const dispatchApplier = useContext(DispatchApplierContext);

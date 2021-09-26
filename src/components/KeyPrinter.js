@@ -24,6 +24,7 @@ const KeyPrint = ({ keyData, setTextureLoaded }) => {
         const texture = new CanvasTexture(canvas.current)
         setTextureLoaded(keyData.key_id, texture)
         setCanvasTexture(texture)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [keyData])
 
     useEffect(() => {
@@ -65,6 +66,7 @@ const KeyPrinter = ({ keys }) => {
         if ( loadedTextures.length === keys.length ) {
             dispatchKeyboard({ type: 'set_print_maps', payload: loadedTextures });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadedTextures])
 
     return (

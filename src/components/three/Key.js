@@ -29,7 +29,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
   printTexture.flipY = false;
   printTexture.needsUpdate = true;
 
-  const [keyPosition, setKeyPosition] = useState([position.x, position.y, 0]);
+  const keyPosition= [position.x, position.y, 0];
   const selectorPosition = [position.x + 0.5, position.y + 0.5, 0.5];
 
   const [hovered, setHover] = useState(false);
@@ -45,7 +45,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
   useEffect(() => {
     const thisKey = keys.find((key) => key_id === key.key_id);
     setSelected(thisKey.state.selected);
-  }, [keys]);
+  }, [keys, key_id]);
 
   return (
     <>
