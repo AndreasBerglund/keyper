@@ -94,7 +94,7 @@ const reducer = (state, action) => {
       console.log(colorId, selection, target)
 
       const isAllKeys = selection === "all_keys";
-      const isAlphaOrModifier = selection === "modifier" || selection === "alphanumerice";
+      const isAlphaOrModifier = selection === "modifier" || selection === "alphanumeric";
       const isArray = Array.isArray(selection);
 
       const keys_new_state = [...state.keys].map((key) => {

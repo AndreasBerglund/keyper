@@ -3,6 +3,9 @@
   src: url("./fonts/BillionDreams.woff2") format("woff2"),
     url("./fonts/BillionDreams.woff") format("woff");
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap');
+
 body {
   background-color: #fff;
   margin: 0;
