@@ -76,6 +76,7 @@ const KeyPrinter = ({ keys }) => {
 
   useEffect(() => {
     dispatchKeyboard({ type: "init_print_maps" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
