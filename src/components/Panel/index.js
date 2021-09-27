@@ -77,8 +77,15 @@ const StyledPanel = styled.div`
   }
 `;
 
-const Logo = styled.div`
+export const Logo = styled.div`
   margin-bottom: 120px;
+  opacity: 1;
+  ${props=>props.pulse && `
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  `}
   span {
     display: block;
     text-align: center;
@@ -93,5 +100,9 @@ const Logo = styled.div`
   span {
     font-size: 10px;
     color: #232323;
+  }
+  @keyframes pulse {
+    0% { opacity: .35;}
+    100% { opacity: 1;}
   }
 `;
