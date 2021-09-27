@@ -23,6 +23,7 @@ const initialState = {
     models: [],
     textures: [],
   },
+  toggler: false,
 };
 
 const reducer = (state, action) => {
@@ -54,10 +55,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         texturesLoaded: true,
+        isLoading: false,
         resources: { ...state.resources, textures: textures },
       };
     }
+    case "render_after_canvas_update": {
+      //to rerender keys after all canvas textures has been updated
+      console.log("render af canvas update");
+      return {
+        ...state,
+        toggler: !state.toggler,
+      };
+    }
+    case "init_print_maps" : {
+      return {
+        ...state,
+        printMapsLoaded: false
+      }
+    }
     case "set_print_maps": {
+      console.log("set print maps");
       const maps = action.payload;
       const newKeys = [...state.keys];
       newKeys.forEach((key) => {
@@ -90,32 +107,32 @@ const reducer = (state, action) => {
     }
     case "apply_color": {
       const { colorId, selection, target } = action.payload;
-      
-      console.log(colorId, selection, target)
+
+      console.log(colorId, selection, target);
 
       const isAllKeys = selection === "all_keys";
-      const isAlphaOrModifier = selection === "modifier" || selection === "alphanumeric";
+      const isAlphaOrModifier =
+        selection === "modifier" || selection === "alphanumeric";
       const isArray = Array.isArray(selection);
 
       const keys_new_state = [...state.keys].map((key) => {
         if (
-          ( isAlphaOrModifier && key.type === selection) ||
-          ( isAllKeys ) ||
-          ( isArray && selection.indexOf(key.key_id) > -1)
+          (isAlphaOrModifier && key.type === selection) ||
+          isAllKeys ||
+          (isArray && selection.indexOf(key.key_id) > -1)
         ) {
-          if ( target === "cap") {
+          if (target === "cap") {
             return { ...key, state: { ...key.state, capColorId: colorId } };
-          } else if ( target === 'print') {
+          } else if (target === "print") {
             return { ...key, state: { ...key.state, charColorId: colorId } };
-          } else { 
+          } else {
             return key;
           }
         } else {
           return key;
         }
-       
       });
-     
+
       return {
         ...state,
         keys: keys_new_state,

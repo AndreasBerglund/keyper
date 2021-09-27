@@ -62,6 +62,7 @@ export const buildKeyboardObject = async (settings) => {
                 map: key.map,
                 state : {
                     selected : false,
+                    toggler : false,
                     capColorId: 1,
                     charColorId: 1
                 } 

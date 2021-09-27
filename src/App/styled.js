@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const App = styled.div`
   width: 100%;
   height: 100vh;
-  background: #fff;
+  background: #232323;
 
   * {
     font-family: "Rubik";

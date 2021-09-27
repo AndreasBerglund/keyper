@@ -3,11 +3,12 @@ import Spinner from 'react-spinner-material';
 import { useProgress } from '@react-three/drei';
 
 const Loader = ({zIndex, ready}) => {
-    const { progress } = useProgress()
+    const { active, progress, errors, item, loaded, total } = useProgress()
+    console.log(active, progress, item, loaded, errors, total)
     const loaderStyle = {
         width: 'calc(100% - 230px)',
         height: '100%',
-        background: 'black',
+        background: '#232323',
         display: 'flex',
         flexDirection: "column",
         justifyContent: 'center',

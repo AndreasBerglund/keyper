@@ -13,18 +13,18 @@ const App = () => {
   return (
       <Styled.App>
           <MessageProvider>
-        {!modelsLoaded && !texturesLoaded && isLoading ? (
+        { (!modelsLoaded || !texturesLoaded) && isLoading ? (
           <Loader zIndex={1000} />
         ) : (
           <>
             <KeyPrinter keys={keys} />
-            <Loader zIndex={0} />
-            {printMapsLoaded && (
-              <>
-                <Panel />
-                <Scene />
-              </>
-            )}
+            { printMapsLoaded ? 
+            <>
+              <Panel />
+              <Scene />
+            </> : 
+            <Loader zIndex={0} /> 
+            }
           </>
         )}
         </MessageProvider>

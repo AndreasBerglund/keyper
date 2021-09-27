@@ -5,7 +5,9 @@ import {
   StateKeyboardContext,
 } from "../../context/KeyboardProvider";
 
-const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
+
+
+const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
   //colors
   const { selectedColorId, target } = useContext(StateApplierContext);
 
@@ -34,6 +36,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
 
   const [hovered, setHover] = useState(false);
   const [selected, setSelected] = useState(false);
+  
 
   const clickedKey = (e) => {
     dispatchKeyboard({
@@ -45,7 +48,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id }) => {
   useEffect(() => {
     const thisKey = keys.find((key) => key_id === key.key_id);
     setSelected(thisKey.state.selected);
-  }, [keys, key_id]);
+  }, [keys, key_id, state]);
 
   return (
     <>

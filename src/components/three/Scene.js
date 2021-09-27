@@ -81,7 +81,7 @@ const CameraControls = ({ target }) => {
         setPos([camera.position.x, camera.position.y, camera.position.z])
         controls.current.update()
     });
-    return <orbitControls ref={controls} target={[10, 3, 0]} args={[camera, domElement]} keyPanSpeed={20} maxPolarAngle={Math.PI / 1.2} minPolarAngle={Math.PI / 3} maxAzimuthAngle={Math.PI / 3} minAzimuthAngle={-Math.PI / 3} enableKeys={false} enableRotate={true} />;
+    return <orbitControls ref={controls} target={[10, 3, 0]} maxDistance={20} minDistance={5} args={[camera, domElement]} keyPanSpeed={20} maxPolarAngle={Math.PI / 1.2} minPolarAngle={Math.PI / 3} maxAzimuthAngle={Math.PI / 3} minAzimuthAngle={-Math.PI / 3} enableKeys={false} enableRotate={true} />;
 };
 
 
