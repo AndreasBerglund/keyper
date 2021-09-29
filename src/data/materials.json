@@ -6,5 +6,6 @@
     "wood3" : ["normalMap", "roughnessMap", "map"],
     "marble1" : ["normalMap", "roughnessMap", "map"],
     "concrete1" : ["roughnessMap", "normalMap", "map", "displacementMap"],
-    "concrete2" : ["normalMap", "roughnessMap", "map"]
+    "concrete2" : ["normalMap", "roughnessMap", "map"],
+    "debug" : ["map"]
 }

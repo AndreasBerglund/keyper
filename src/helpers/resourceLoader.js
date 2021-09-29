@@ -2,7 +2,7 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { TextureLoader } from 'three'
 import layouts from '../data/layouts.json'
-//import maps from '../data/maps.json'
+
 import keys from '../data/keys.json'
 import cases from '../data/cases.json'
 import materials from '../data/materials.json'
@@ -56,6 +56,9 @@ export const buildKeyboardObject = async (settings) => {
                     y: accumulated_height - 1,
                     col : idxCol,
                     row : idxRow
+                },
+                dimension: {
+                    width: key.width
                 },
                 textures: textures,
                 printTexture : {},

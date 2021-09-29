@@ -23,6 +23,10 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
   const _textures = {};
   textures.forEach((texture) => {
     const textureResource = resources.textures[texture.textureKey];
+    if (texture.type === 'map') {
+      textureResource.flipX = false;
+      textureResource.flipY = false;
+    }
     _textures[texture.type] = textureResource;
   });
 
