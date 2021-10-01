@@ -17,7 +17,7 @@
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "shift_left","model":"1.25x1r1","width":1.25},
+                            {"type":"modifier","map" : "shft_l","model":"2.25x1r2","width":2.25},
                             {"type":"alphanumeric","map" : "z","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "x","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "c","model":"1x1r2","width":1},

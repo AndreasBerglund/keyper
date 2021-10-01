@@ -45,6 +45,11 @@
       "chars" : [
         { "char" : "alt", "pos" : [1,1] }
       ]
+    },
+    "shft_l": {
+      "chars" : [
+        { "char" : "shift", "pos" : [0,0] }
+      ]
     }
   }
 }
