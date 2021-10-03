@@ -70,7 +70,7 @@ const KeyPrint = ({ keyData, setTextureLoaded }) => {
             wordYPosition = TopKeyAreaStartY + wordHeight;
           } else if ( y === 1) {
             //middle
-            wordYPosition = TopKeyAreaStartY + TopKeyAreaHeight/2 - wordHeight; //something is off here! 
+            wordYPosition = TopKeyAreaStartY + TopKeyAreaHeight/2 - wordHeight*1.1; //something is off here! 
           } else {
             //bottom
             wordYPosition = TopKeyAreaEndY;

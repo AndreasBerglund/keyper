@@ -45,7 +45,55 @@ const initialState = {
         {
             id : 10,
             colorValue : "#8ED7B0"
-        }
+        },
+        {
+            id : 11,
+            colorValue : "#29335C"
+        },
+        {
+            id : 12,
+            colorValue : "#F4E9CD"
+        },
+        {
+            id : 13,
+            colorValue : "#7A6F9B"
+        },
+        {
+            id : 14,
+            colorValue : "#D4CDF4"
+        },
+        {
+            id : 15,
+            colorValue : "#19647E"
+        },
+        {
+            id : 16,
+            colorValue : "#28AFB0"
+        },
+        {
+            id : 17,
+            colorValue : "#EB5160"
+        },
+        {
+            id : 18,
+            colorValue : "#F3A712"
+        },
+        {
+            id : 19,
+            colorValue : "#E4572E"
+        },
+        {
+            id : 20,
+            colorValue : "#8AE9C1"
+        },
+        {
+            id : 21,
+            colorValue : "#72A276"
+        },
+        {
+            id : 22,
+            colorValue : "#F3AE53"
+        },
 
     ],
     selectedColorId : 1,

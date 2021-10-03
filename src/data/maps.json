@@ -26,11 +26,155 @@
     },
     "d" : {
       "chars" : [
-        {"char" : ",", "pos": [0,2]},
-        {"char" : ";", "pos": [2,2]}
+        {"char" : "D", "pos": [1,1]}
+      ]
+    },
+    "e" : {
+      "chars" : [
+        {"char" : "E", "pos": [1,1]}
+      ]
+    },
+    "f" : {
+      "chars" : [
+        {"char" : "F", "pos": [1,1]}
+      ]
+    },
+    "g" : {
+      "chars" : [
+        {"char" : "G", "pos": [1,1]}
+      ]
+    },
+    "h" : {
+      "chars" : [
+        {"char" : "H", "pos": [1,1]}
+      ]
+    },
+    "i" : {
+      "chars" : [
+        {"char" : "I", "pos": [1,1]}
+      ]
+    },
+    "j" : {
+      "chars" : [
+        {"char" : "J", "pos": [1,1]}
+      ]
+    },
+    "k" : {
+      "chars" : [
+        {"char" : "K", "pos": [1,1]}
+      ]
+    },
+    "l" : {
+      "chars" : [
+        {"char" : "L", "pos": [1,1]}
+      ]
+    },
+    "m" : {
+      "chars" : [
+        {"char" : "M", "pos": [1,1]}
+      ]
+    },
+    "n" : {
+      "chars" : [
+        {"char" : "N", "pos": [1,1]}
+      ]
+    },
+    "o" : {
+      "chars" : [
+        {"char" : "O", "pos": [1,1]}
+      ]
+    },
+    "p" : {
+      "chars" : [
+        {"char" : "P", "pos": [1,1]}
+      ]
+    },
+    "q" : {
+      "chars" : [
+        {"char" : "Q", "pos": [1,1]}
+      ]
+    },
+    "r" : {
+      "chars" : [
+        {"char" : "R", "pos": [1,1]}
+      ]
+    },
+    "s" : {
+      "chars" : [
+        {"char" : "S", "pos": [1,1]}
+      ]
+    },
+    "t" : {
+      "chars" : [
+        {"char" : "T", "pos": [1,1]}
+      ]
+    },
+    "u" : {
+      "chars" : [
+        {"char" : "U", "pos": [1,1]}
+      ]
+    },
+    "v" : {
+      "chars" : [
+        {"char" : "V", "pos": [1,1]}
+      ]
+    },
+    "w" : {
+      "chars" : [
+        {"char" : "W", "pos": [1,1]}
+      ]
+    },
+    "x" : {
+      "chars" : [
+        {"char" : "X", "pos": [1,1]}
+      ]
+    },
+    "y" : {
+      "chars" : [
+        {"char" : "Y", "pos": [1,1]}
+      ]
+    },
+    "z" : {
+      "chars" : [
+        {"char" : "Z", "pos": [1,1]}
+      ]
+    },
+    "comma" : {
+      "chars" : [
+        {"char" : "<", "pos": [1,0]},
+        {"char" : ",", "pos": [1,2]}
+      ]
+    },
+    "period" : {
+      "chars" : [
+        {"char" : ">", "pos": [1,0]},
+        {"char" : ".", "pos": [1,2]}
+      ]
+    },
+    "forward_slash" : {
+      "chars" : [
+        {"char" : "?", "pos": [1,0]},
+        {"char" : "/", "pos": [1,2]}
+      ]
+    },
+    "colon" : {
+      "chars" : [
+        {"char" : ":", "pos": [1,0]},
+        {"char" : ";", "pos": [1,2]}
+      ]
+    },
+    "quote" : {
+      "chars" : [
+        {"char" : "\"", "pos": [1,0]},
+        {"char" : ",", "pos": [1,2]}
       ]
     },
     "ctrl_l": {
+      "chars" : [
+        { "char" : "ctrl", "pos" : [1,1] }
+      ]
+    },
+    "ctrl_r": {
       "chars" : [
         { "char" : "ctrl", "pos" : [1,1] }
       ]
@@ -41,14 +185,140 @@
 
       ]
     },
+    "os_r": {
+      "chars" : [
+        { "char" : "os", "pos" : [1,1] }
+
+      ]
+    },
+    "fn": {
+      "chars" : [
+        { "char" : "fn", "pos" : [1,1] }
+
+      ]
+    },
+    "caps_lock": {
+      "chars" : [
+        { "char" : "caps lock", "pos" : [1,1] }
+
+      ]
+    },
+    "return": {
+      "chars" : [
+        { "char" : "return", "pos" : [1,1] }
+
+      ]
+    },
     "alt_l": {
       "chars" : [
         { "char" : "alt", "pos" : [1,1] }
       ]
     },
-    "shft_l": {
+    "alt_r": {
       "chars" : [
-        { "char" : "shift", "pos" : [0,0] }
+        { "char" : "alt", "pos" : [1,1] }
+      ]
+    },
+    "shift_l": {
+      "chars" : [
+        { "char" : "shift", "pos" : [1,1] }
+      ]
+    },
+    "shift_r": {
+      "chars" : [
+        { "char" : "shift", "pos" : [1,1] }
+      ]
+    },
+    "tab": {
+      "chars" : [
+        { "char" : "tab", "pos" : [1,1] }
+      ]
+    },
+    "|": {
+      "chars" : [
+        { "char" : "|  \\", "pos" : [1,1] }
+      ]
+    },
+    "[": {
+      "chars" : [
+        { "char" : "{", "pos" : [0,1] },
+        { "char" : "[", "pos" : [2,1] }
+      ]
+    },
+    "]": {
+      "chars" : [
+        { "char" : "}", "pos" : [0,1] },
+        { "char" : "]", "pos" : [2,1] }
+      ]
+    },
+    "backspace": {
+      "chars" : [
+        { "char" : "backspace", "pos" : [1,1] }
+      ]
+    },
+    "esc": {
+      "chars" : [
+        { "char" : "esc", "pos" : [1,1] }
+      ]
+    },
+    "1": {
+      "chars" : [
+        { "char" : "1", "pos" : [1,1] }
+      ]
+    },
+    "2": {
+      "chars" : [
+        { "char" : "2", "pos" : [1,1] }
+      ]
+    },
+    "3": {
+      "chars" : [
+        { "char" : "3", "pos" : [1,1] }
+      ]
+    },
+    "4": {
+      "chars" : [
+        { "char" : "4", "pos" : [1,1] }
+      ]
+    },
+    "5": {
+      "chars" : [
+        { "char" : "5", "pos" : [1,1] }
+      ]
+    },
+    "6": {
+      "chars" : [
+        { "char" : "6", "pos" : [1,1] }
+      ]
+    },
+    "7": {
+      "chars" : [
+        { "char" : "7", "pos" : [1,1] }
+      ]
+    },
+    "8": {
+      "chars" : [
+        { "char" : "8", "pos" : [1,1] }
+      ]
+    },
+    "9": {
+      "chars" : [
+        { "char" : "9", "pos" : [1,1] }
+      ]
+    },
+    "0": {
+      "chars" : [
+        { "char" : "0", "pos" : [1,1] }
+      ]
+    },
+    "minus": {
+      "chars" : [
+        { "char" : "-", "pos" : [1,1] }
+      ]
+    },
+    "plus": {
+      "chars" : [
+        { "char" : "+", "pos" : [1,1] }
       ]
     }
   }

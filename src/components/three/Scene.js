@@ -48,7 +48,7 @@ const Scene = ({ onMounted }) => {
             <ContextBridge>
                 {modelsLoaded && texturesLoaded &&
                     <>
-                        <axesHelper />
+                        {/* <axesHelper /> */}
                         <CameraControls />
                         <Lights />
                         <Keyboard />

@@ -25,13 +25,13 @@ const Lights = () => {
         <>
             <ambientLight intensity={0.1} />
             
-            <axesHelper position={dirlight.pos} angle={.15} />
+            {/* <axesHelper position={dirlight.pos} angle={.15} /> */}
             <directionalLight castShadow={false} intensity={dirlight.int} position={dirlight.pos} angle={0.15}  shadow-mapSize={shadowMapSize}  />
             
-            <axesHelper position={p1.pos} angle={.15} />
+            {/* <axesHelper position={p1.pos} angle={.15} /> */}
             <pointLight castShadow={true} position={p1.pos} intensity={p1.int} shadow-mapSize={shadowMapSize} />
             
-            <axesHelper position={p2.pos} angle={.15} /> 
+            {/* <axesHelper position={p2.pos} angle={.15} />  */}
             <pointLight castShadow position={p2.pos} intensity={p2.int} shadow-mapSize={shadowMapSize} />
         </>
     )

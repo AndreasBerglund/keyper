@@ -86,3 +86,17 @@ export const SmallCloseButton = styled(Button)`
     border-color: transparent;
   }
 `;
+
+export const SquareButton = styled(Button)`
+    width: 33px;
+    height: 33px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    
+    background-color: white;
+    border-color: transparent;
+
+    &:hover, &:active {
+      background-color: white;
+    }
+`; 
+

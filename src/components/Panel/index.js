@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   DispatchKeyboardContext
 } from "../../context/KeyboardProvider";
-import { Button } from "../shared/Button";
+import { Button, SquareButton } from "../shared/Button";
 import styled from "styled-components";
 import ColorPickerGroup from "./ColorPickerGroup";
 import { DispatchApplierContext, StateApplierContext } from "../../context/ApplierProvider";
@@ -13,6 +13,7 @@ const Panel = ({ changeLayout, changeColors }) => {
   const dispatchKeyboard = useContext(DispatchKeyboardContext);
   const { colors, selectedColorId, target } = useContext(StateApplierContext);
   const dispatchApplier = useContext(DispatchApplierContext);
+  const [open, setOpen] = useState(true);
 
   const applyColor = (e) => {
     dispatchKeyboard({
@@ -26,7 +27,7 @@ const Panel = ({ changeLayout, changeColors }) => {
   };
 
   return (
-    <StyledPanel>
+    <StyledPanel className={ open ? "open" : "closed"}>
       <div>
         <ColorPickerGroup />
         <div>
@@ -51,6 +52,7 @@ const Panel = ({ changeLayout, changeColors }) => {
         <span>Tasty caps</span>
         <span>v.0.1 © Andreas Berglund</span>
       </Logo>
+      <SquareButton onClick={ ()=>{ setOpen( !open ) } } > { open ? 'x' : 'o' } </SquareButton>
     </StyledPanel>
   );
 };
@@ -70,11 +72,23 @@ const StyledPanel = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: right .25s ease-in;
+  &.closed { 
+    right : -380px;
+    transition: right .25s ease-out;
+  }
 
   h5 {
     margin-top: 50px;
     margin-bottom: 10px;
   }
+
+  ${SquareButton} {
+    position: absolute;
+    left: calc(-33px/2);
+    bottom: 100px;
+  }
+
 `;
 
 export const Logo = styled.div`

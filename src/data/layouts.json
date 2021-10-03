@@ -5,19 +5,19 @@
                 [
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "ctrl_l","model":"1.25x1r1","width":1.25},
-                            {"type":"modifier","map" : "os_l","model":"1.25x1r1","width":1.25},
-                            {"type":"modifier","map" : "alt_l","model":"1.25x1r1","width":1.25},
+                            {"type":"modifier","map" : "ctrl_l","model":"1.25x1r1","width":1.275},
+                            {"type":"modifier","map" : "os_l","model":"1.25x1r1","width":1.275},
+                            {"type":"modifier","map" : "alt_l","model":"1.25x1r1","width":1.275},
                             {"type":"alphanumeric","map":"spacebar","model":"6.25x1r1","width":6.25},
-                            {"type":"modifier","map" : "alt_r","model":"1.25x1r1","width":1.25},
-                            {"type":"modifier","map" : "os_r","model":"1.25x1r1","width":1.25},
-                            {"type":"modifier","map" : "fn","model":"1.25x1r1","width":1.25},
-                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":1.25}
+                            {"type":"modifier","map" : "alt_r","model":"1.25x1r1","width":1.275},
+                            {"type":"modifier","map" : "os_r","model":"1.25x1r1","width":1.275},
+                            {"type":"modifier","map" : "fn","model":"1.25x1r1","width":1.275},
+                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":1.275}
                         ]
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "shft_l","model":"2.25x1r2","width":2.25},
+                            {"type":"modifier","map" : "shift_l","model":"2.25x1r3","width":2.25},
                             {"type":"alphanumeric","map" : "z","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "x","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "c","model":"1x1r2","width":1},
@@ -27,61 +27,61 @@
                             {"type":"alphanumeric","map" : "m","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "comma","model":"1x1r2","width":1},
                             {"type":"alphanumeric","map" : "period","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "forward_slash","model":"1x1r2","width":2},
-                            {"type":"modifier","map" : "shift_right","model":"1x1r2","width":3}
+                            {"type":"alphanumeric","map" : "forward_slash","model":"1x1r2","width":1},
+                            {"type":"modifier","map" : "shift_r","model":"2.75x1r2","width":2.75}
                         ]
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "caps_lock","model":"1.25x1r1","width":1.5},
-                            {"type":"alphanumeric","map" : "a","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "s","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map":"d","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "d","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "f","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "g","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "h","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "j","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "k","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "l","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "single_quote","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "double_quote","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "return","model":"1x1r2","width":3}
+                            {"type":"modifier","map" : "caps_lock","model":"1.75x1r3","width":1.75},
+                            {"type":"alphanumeric","map" : "a","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "s","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map":"d","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "f","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "g","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "h","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "j","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "k","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "l","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "quote","model":"1x1r3","width":1},
+                            {"type":"alphanumeric","map" : "colon","model":"1x1r3","width":1},
+                            {"type":"modifier","map" : "return","model":"2.25x1r3","width":2.25}
                         ]
                     },
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "ctrl_r","model":"1.25x1r1","width":1.25},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map":"x","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "fn","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width":3}
+                            {"type":"modifier","map" : "tab","model":"1.5x1r4","width":1.5},
+                            {"type":"alphanumeric","map" : "q","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "w","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map":"e","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "r","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "t","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "y","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "u","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "i","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "o","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "p","model":"1x1r4","width":1},
+                            {"type":"alphanumeric","map" : "[","model":"1x1r4","width": 1},
+                            {"type":"alphanumeric","map" : "]","model":"1x1r4","width": 1},
+                            {"type":"alphanumeric","map" : "|","model":"1.5x1r4","width":3}
                         ]
                     },                   
                     {
                         "keys" : [
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r1","width":1},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map":"x","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "alt_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "os_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "fn","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"alphanumeric","map" : "ctrl_r","model":"1x1r2","width":1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
-                            {"type":"modifier","map" : "ctrl_r","model":"1x1r2","width": 1},
-                            {"type":"modifier","map" : "ctrl_l","model":"1.25x1r1","width":3}
+                            {"type":"modifier","map" : "esc","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "1","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "2","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map":"3","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "4","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "5","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "6","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "7","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "8","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "9","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "0","model":"1x1r5","width":1},
+                            {"type":"alphanumeric","map" : "minus","model":"1x1r5","width": 1},
+                            {"type":"alphanumeric","map" : "plus","model":"1x1r5","width": 1},
+                            {"type":"modifier","map" : "backspace","model":"2x1r5","width":2}
                         ]
                     }                   
                        
