@@ -90,8 +90,12 @@ export const SmallCloseButton = styled(Button)`
 export const SquareButton = styled(Button)`
     width: 33px;
     height: 33px;
+    padding: 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background-color: white;
     border-color: transparent;
 

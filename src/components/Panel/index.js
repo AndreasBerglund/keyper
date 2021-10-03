@@ -7,6 +7,8 @@ import styled from "styled-components";
 import ColorPickerGroup from "./ColorPickerGroup";
 import { DispatchApplierContext, StateApplierContext } from "../../context/ApplierProvider";
 import Toggle from "../shared/Toggle";
+import {ReactComponent as ArrowLeft} from '../../svg/arrow_left.svg';
+
 
 const Panel = ({ changeLayout, changeColors }) => {
 
@@ -52,7 +54,7 @@ const Panel = ({ changeLayout, changeColors }) => {
         <span>Tasty caps</span>
         <span>v.0.1 © Andreas Berglund</span>
       </Logo>
-      <SquareButton onClick={ ()=>{ setOpen( !open ) } } > { open ? 'x' : 'o' } </SquareButton>
+      <SquareButton onClick={ ()=>{ setOpen( !open ) } } > <ArrowLeft/> </SquareButton>
     </StyledPanel>
   );
 };
@@ -87,6 +89,9 @@ const StyledPanel = styled.div`
     position: absolute;
     left: calc(-33px/2);
     bottom: 100px;
+    & > svg {
+      margin-right: 4px;
+    }
   }
 
 `;
