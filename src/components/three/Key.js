@@ -58,7 +58,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
     <>
       <mesh
         castShadow={false}
-        receiveShadow={false}
+        receiveShadow={true}
         position={keyPosition}
         onClick={clickedKey}
         onPointerOver={(e) => setHover(true)}
@@ -69,9 +69,9 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
           {..._textures}
           map={printTexture}
           metalness={0}
-          roughness={0.15}
-          reflectivity={1}
-          clearcoat={0.4}
+          roughness={0}
+          reflectivity={0}
+          clearcoat={0}
         />
       </mesh>
       <mesh position={keyPosition} visible={hovered ? true : false}>
