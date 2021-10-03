@@ -16,13 +16,6 @@ import Floor from './Floor.js'
 
 // Extend will make OrbitControls available as a JSX element called orbitControls for us to use.
 extend({ OrbitControls });
-// softShadows({
-//     frustrum: 3.75, // Frustrum width (default: 3.75)
-//     size: 0.005, // World size (default: 0.005)
-//     near: 9.5, // Near plane (default: 9.5)
-//     samples: 30, // Samples (default: 17)
-//     rings: 11, // Rings (default: 11)
-//   })
 
 
 const styleOut = {
@@ -44,7 +37,9 @@ const Scene = ({ onMounted }) => {
     const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext, StateApplierContext);
     const { modelsLoaded, texturesLoaded, floor } = useContext(StateKeyboardContext);
     return (
-        <Canvas shadowMap style={mounted ? styleIn : styleOut} >
+        <Canvas style={mounted ? styleIn : styleOut}  shadowMap={{ enabled: false, type: "PCFSoftShadowMap"}}  onCreated={canvasCtx => {
+            canvasCtx.gl.physicallyCorrectLights = true;
+          }} >
             <ContextBridge>
                 {modelsLoaded && texturesLoaded &&
                     <>

@@ -28,7 +28,8 @@ const getKeyData = (design) => {
 //Get textures used by a material, return array of type and path to texture ( defined in materials.json )
 export const getTextureObjectsByMaterial = (material) => {
     const base_path = `/textures/materials/${material}`;
-    return materials[material].map(texture => { return { type: texture, path: `${base_path}/${texture}.png`, textureKey: `${base_path}/${texture}.png`, resource: null } })
+    console.log(materials[material])
+    return materials[material].maps.map(texture => { return { type: texture, path: `${base_path}/${texture}.${materials[material].filetype}`, textureKey: `${base_path}/${texture}.${materials[material].filetype}`, resource: null } })
 }
 
 //Builds the keyboard object used in keyboardReducer for displaying the threejs models. No textures or models loaded here.

@@ -26,6 +26,10 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
     if (texture.type === 'map') {
       textureResource.flipX = false;
       textureResource.flipY = false;
+    } else {
+      //scaling texture
+      textureResource.anisotropy = 4;
+      textureResource.repeat.set(5, 5)
     }
     _textures[texture.type] = textureResource;
   });
@@ -58,7 +62,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
     <>
       <mesh
         castShadow={false}
-        receiveShadow={true}
+        receiveShadow={false}
         position={keyPosition}
         onClick={clickedKey}
         onPointerOver={(e) => setHover(true)}
@@ -68,10 +72,11 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
         <meshPhysicalMaterial
           {..._textures}
           map={printTexture}
-          metalness={0}
-          roughness={0}
+          metalness={.7}
+          roughness={.5}
           reflectivity={0}
           clearcoat={0}
+          normalScale={[.25,.25]}
         />
       </mesh>
       <mesh position={keyPosition} visible={hovered ? true : false}>

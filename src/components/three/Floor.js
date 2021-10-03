@@ -8,10 +8,13 @@ const Floor = ({ floor }) => {
   const textures = {}
   floor.textures.forEach(texture => {
     const resource = resources.textures[texture.textureKey];
-    if (texture.type === 'map') {
+    // if (texture.type === 'map') {
+    if (texture.type) {
       resource.wrapS = RepeatWrapping
       resource.wrapT = RepeatWrapping
-      resource.repeat.set(3, 3)
+      resource.repeat.set(4, 4);
+      resource.anisotropy = 4;
+      // resource.repeat.set( 10, 24 );
     }
     textures[texture.type] = resource
   })
@@ -19,7 +22,10 @@ const Floor = ({ floor }) => {
   return (
     <mesh receiveShadow rotation={[0, 0, 90 * 0.0174532925]}>
       <planeBufferGeometry args={[40, 120]} />
-      <meshStandardMaterial color={"#fff"} attach="material" {...textures } map={textures['map']} roughness={100} />
+      <meshStandardMaterial attach="material"  
+      map={textures['map']} 
+      {...textures } 
+      roughness={150}/>
     </mesh>
   )
 

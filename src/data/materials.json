@@ -1,11 +1,8 @@
 {
-    "plastic1" : ["normalMap", "roughnessMap"],
-    "plastic2" : ["normalMap", "roughnessMap"],
-    "wood1" : ["normalMap", "roughnessMap", "map"],
-    "wood2" : ["roughnessMap", "normalMap", "map", "displacementMap"],
-    "wood3" : ["normalMap", "roughnessMap", "map"],
-    "marble1" : ["normalMap", "roughnessMap", "map"],
-    "concrete1" : ["roughnessMap", "normalMap", "map", "displacementMap"],
-    "concrete2" : ["normalMap", "roughnessMap", "map"],
-    "debug" : ["map"]
+    "rubber" : { "maps" : ["normalMap", "roughnessMap"], "filetype" : "png"  },
+    "plastic2" : { "maps":  ["normalMap", "roughnessMap"], "filetype" : "png"  },
+    "plastic1" : { "maps":  ["normalMap", "roughnessMap"], "filetype" : "png"  },
+    "wood1" :  { "maps": ["normalMap", "roughnessMap", "map"], "filetype" : "png" },
+    "wood2" :  { "maps": ["roughnessMap","map", "normalMap"], "filetype" : "png" },
+    "debug" :  { "maps": ["map"], "filetype" : "png"  }
 }
