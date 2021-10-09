@@ -56,7 +56,8 @@ const Panel = ({ changeLayout, changeColors }) => {
       </div>
       <Logo>
         <span>Tasty caps</span>
-        <span>v.0.1 © Andreas Berglund</span>
+        <span>v.0.1 <a href="mailto:baron_kippers@hotmail.com">contact</a></span>
+ 
       </Logo>
       <SquareButton
         onClick={() => {
