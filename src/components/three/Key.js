@@ -73,7 +73,7 @@ const Key = ({ textures, position, modelKey, printTexture, key_id, state }) => {
           {..._textures}
           map={printTexture}
           metalness={0}
-          roughness={10}
+          roughness={0.8}
           reflectivity={0}
           clearcoat={0}
           normalScale={[.125,.525]}
