@@ -37,7 +37,7 @@ const Scene = ({ onMounted }) => {
     const ContextBridge = useContextBridge(StateKeyboardContext, DispatchKeyboardContext, StateApplierContext);
     const { modelsLoaded, texturesLoaded, floor } = useContext(StateKeyboardContext);
     return (
-        <Canvas style={mounted ? styleIn : styleOut}  shadowMap={{ enabled: false, type: "PCFSoftShadowMap"}}  onCreated={canvasCtx => {
+        <Canvas style={mounted ? styleIn : styleOut}  shadowMap={{ enabled: true, type: "PCFSoftShadowMap "}}  onCreated={canvasCtx => {
             canvasCtx.gl.physicallyCorrectLights = true;
           }} >
             <ContextBridge>

@@ -2,42 +2,39 @@ import * as THREE from "three";
 
 const Lights = () => {
   //amb light
-  const dirlight = {
-    pos: [30, 40, 10],
-    int: 0.125,
-  };
-
   //point lights
   const p1 = {
-    power: 800,
-    pos: [55, 5, 25],
+    power: 400,
+    pos: [15, 5, 25],
     int: 0.23,
   };
   const p2 = {
     power: 800,
-    pos: [-55, 5, 25],
+    pos: [-35, 5, 25],
     int: 0.1,
   };
+  const p3  = {
+    power : 1,
+    pos: [-20,0,20],
+    int: .2
+  }
 
-  const shadowMapSize = new THREE.Vector2(2048, 2048);
+  const shadowMapSize = new THREE.Vector2(4096 , 4096 );
 
   return (
     <>
-      {/* <ambientLight intensity={0.1} /> */}
+      {/* <ambientLight intensity={0.45} /> */}
 
-      <pointLight castShadow position={p2.pos} power={p2.power}  
-    //   shadow-mapSize-height={1024}
-    //     shadow-mapSize-width={1024}
-        />
-      <pointLight castShadow position={p1.pos} power={p1.power} shadow-mapSize={shadowMapSize}/>
+      <pointLight castShadow={false} position={p2.pos} power={p2.power} />
+      <pointLight castShadow={false} position={p1.pos} power={p1.power}   />
 
-      <axesHelper position={dirlight.pos} angle={0.15} />
-      {/* <directionalLight castShadow={false} intensity={dirlight.int} position={dirlight.pos} angle={0.15}  shadow-mapSize={shadowMapSize}  /> */}
+      <axesHelper position={p3.pos} angle={0.15} />
+      <directionalLight castShadow={true} intensity={p3.int} position={p3.pos}   shadow-mapSize={shadowMapSize}  />
 
-      <axesHelper position={p1.pos} angle={0.15} />
+      {/* <axesHelper position={p1.pos} angle={0.15} /> */}
       {/* <pointLight castShadow={true} position={p1.pos} intensity={p1.int} shadow-mapSize={shadowMapSize} /> */}
 
-      <axesHelper position={p2.pos} angle={0.15} />
+      {/* <axesHelper position={p2.pos} angle={0.15} /> */}
       {/* <pointLight castShadow position={p2.pos} intensity={p2.int} shadow-mapSize={shadowMapSize} /> */}
     </>
   );

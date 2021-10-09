@@ -8,11 +8,11 @@ const initialState = {
     colors : [
         {
             id : 1,
-            colorValue : "#1A1A1A"
+            colorValue : "#F9F9F9"
         },
         {
             id : 2,
-            colorValue : "#F9F9F9"
+            colorValue : "#1A1A1A"
         },
         {
             id : 3,

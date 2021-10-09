@@ -1,17 +1,16 @@
 import React, { useContext, useState } from "react";
-import {
-  DispatchKeyboardContext
-} from "../../context/KeyboardProvider";
+import { DispatchKeyboardContext } from "../../context/KeyboardProvider";
 import { Button, SquareButton } from "../shared/Button";
 import styled from "styled-components";
 import ColorPickerGroup from "./ColorPickerGroup";
-import { DispatchApplierContext, StateApplierContext } from "../../context/ApplierProvider";
+import {
+  DispatchApplierContext,
+  StateApplierContext,
+} from "../../context/ApplierProvider";
 import Toggle from "../shared/Toggle";
-import {ReactComponent as ArrowLeft} from '../../svg/arrow_left.svg';
-
+import { ReactComponent as ArrowLeft } from "../../svg/arrow_left.svg";
 
 const Panel = ({ changeLayout, changeColors }) => {
-
   const dispatchKeyboard = useContext(DispatchKeyboardContext);
   const { colors, selectedColorId, target } = useContext(StateApplierContext);
   const dispatchApplier = useContext(DispatchApplierContext);
@@ -23,18 +22,23 @@ const Panel = ({ changeLayout, changeColors }) => {
       payload: {
         colorId: colors.find((c) => selectedColorId === c.id).id,
         selection: e.target.value,
-        target: target
+        target: target,
       },
     });
   };
 
   return (
-    <StyledPanel className={ open ? "open" : "closed"}>
+    <StyledPanel className={open ? "open" : "closed"}>
       <div>
         <ColorPickerGroup />
         <div>
           <h5>Target</h5>
-          <Toggle v1="cap" v2="print" value={target} onChangeHandler={() => dispatchApplier({type:"toggle_target"})}></Toggle>
+          <Toggle
+            v1="cap"
+            v2="print"
+            value={target}
+            onChangeHandler={() => dispatchApplier({ type: "toggle_target" })}
+          ></Toggle>
         </div>
         <div>
           <h5>Apply to</h5>
@@ -54,7 +58,14 @@ const Panel = ({ changeLayout, changeColors }) => {
         <span>Tasty caps</span>
         <span>v.0.1 © Andreas Berglund</span>
       </Logo>
-      <SquareButton onClick={ ()=>{ setOpen( !open ) } } > <ArrowLeft/> </SquareButton>
+      <SquareButton
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        {" "}
+        <ArrowLeft />{" "}
+      </SquareButton>
     </StyledPanel>
   );
 };
@@ -74,10 +85,16 @@ const StyledPanel = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: right .25s ease-in;
-  &.closed { 
-    right : -380px;
-    transition: right .25s ease-out;
+  transition: right 0.25s ease-in;
+  &.closed {
+    right: -380px;
+    transition: right 0.25s ease-out;
+  }
+  @media (max-width: 375px) {
+    width: 275px;
+    &.closed {
+      right: -320px;
+    }
   }
 
   h5 {
@@ -87,19 +104,30 @@ const StyledPanel = styled.div`
 
   ${SquareButton} {
     position: absolute;
-    left: calc(-33px/2);
+    left: calc(-33px / 2);
     bottom: 100px;
     & > svg {
       margin-right: 4px;
     }
   }
-
+  &.closed {
+    ${SquareButton} {
+      & > svg {
+        transform: rotate(180deg) translateX(-4px);
+      }
+    }
+  }
 `;
 
 export const Logo = styled.div`
   margin-bottom: 120px;
+  @media (max-width: 375px) {
+    margin-bottom: 60px;
+  }
   opacity: 1;
-  ${props=>props.pulse && `
+  ${(props) =>
+    props.pulse &&
+    `
   animation-name: pulse;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -121,7 +149,11 @@ export const Logo = styled.div`
     color: #232323;
   }
   @keyframes pulse {
-    0% { opacity: .35;}
-    100% { opacity: 1;}
+    0% {
+      opacity: 0.35;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;

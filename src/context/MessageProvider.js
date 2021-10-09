@@ -63,10 +63,13 @@ const Message = styled.div`
   border-radius: 5px;
   bottom: 40px;
   left: 40px;
-  z-index: 1;
+  z-index: 10;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   min-width: 200px;
   max-width: 320px;
+  @media (max-width:576px) {
+    left: 50%; transform: translateX(-50%);
+  }
   & > p {
     font-family: "Rubik";
   }

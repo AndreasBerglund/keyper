@@ -20,7 +20,7 @@ const Floor = ({ floor }) => {
   })
 
   return (
-    <mesh receiveShadow rotation={[0, 0, 90 * 0.0174532925]}>
+    <mesh receiveShadow={true} rotation={[0, 0, 90 * 0.0174532925]}>
       <planeBufferGeometry args={[40, 120]} />
       <meshStandardMaterial attach="material"  
       map={textures['map']} 
