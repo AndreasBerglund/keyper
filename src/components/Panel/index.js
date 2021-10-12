@@ -56,16 +56,16 @@ const Panel = ({ changeLayout, changeColors }) => {
       </div>
       <Logo>
         <span>Tasty caps</span>
-        <span>v.0.1 <a href="mailto:baron_kippers@hotmail.com">contact</a></span>
- 
+        <span>
+          <a href="https://github.com/AndreasBerglund/keyper">github</a>
+        </span>
       </Logo>
       <SquareButton
         onClick={() => {
           setOpen(!open);
         }}
       >
-        {" "}
-        <ArrowLeft />{" "}
+        <ArrowLeft />
       </SquareButton>
     </StyledPanel>
   );
